@@ -21,6 +21,7 @@
             </form>
             <p class="italics">Get notified when we lunch</p>
           </div>
+          <img src="../../../assets/img/hero.png" />
         </b-col>
       </b-row>
     </b-container>
@@ -44,6 +45,24 @@ export default {
   background-repeat: no-repeat
   background-position-x: 100%
   position: relative
+  padding-bottom: 130px
+  @media only screen and (max-width: 767px)
+    padding-bottom: 30px
+  img
+    display: none
+    @media only screen and (max-width: 767px)
+      width: 100%
+      position: absolute
+      display: block
+      right: 0
+      top: 200px
+      z-index: 1
+    @media only screen and (max-width: 639px)
+      top: 300px
+    @media only screen and (max-width: 410px)
+      top: 330px
+  @media only screen and (max-width: 767px)
+    background-image: none
   &::after
     content: ''
     position: absolute
@@ -71,13 +90,22 @@ export default {
     display: flex
     align-items: center
     margin-top: 40px
+    @media screen and (max-width: 767px)
+      margin-top: 40%
     input
       background: rgba(255, 255, 255, 0.109757)
       padding: 9px 15px
       font-size: 1rem
-      min-width: 320px
-      border: none
+      width: auto
+      min-width: 1px
+      flex: 1
+      color: white
+      border: 2px solid transparent
         bottom: 2px solid #fff
+      transition: border-left .6s, border-right .6s, border-top, .6s
+      &:focus
+        outline: none
+        border: 2px solid #fff
       &::placeholder
         color: #fff
     button
@@ -87,11 +115,16 @@ export default {
       display: flex
       align-items: center
       color: #000
-      padding: 10px 15px
+      padding: 11px 15px
+      white-space: nowrap
       border: none
+      @media only screen and (max-width: 884px)
+        padding: 11px 10px
   .italics
     color: #fff
     font-size: .875rem
     font-family: 'Gordita Light Italic', sans-serif
     padding: 1rem
+    @media only screen and (max-width: 767px)
+      text-align: center
 </style>

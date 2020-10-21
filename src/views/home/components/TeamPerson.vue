@@ -42,5 +42,6 @@ export default {
     li
       font-size: 16px
   img
+    width: 50%
     max-width: 220px
 </style>

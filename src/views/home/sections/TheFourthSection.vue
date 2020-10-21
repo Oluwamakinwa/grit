@@ -13,12 +13,25 @@
       <div class="initial-contact-margin"></div>
       <b-row
         class="contact-row"
-        v-for="(teamArray, index) in team"
+        v-for="(teamArray, index) in splitTeam(3)"
         :key="`${index}-team`"
         :id="`contact-row-${index}`"
       >
         <b-col
           md="4"
+          v-for="(person, index) in teamArray"
+          :key="`person-${index}`"
+        >
+          <TeamPerson :person="person" />
+        </b-col>
+      </b-row>
+      <b-row
+        class="contact-medium-row"
+        v-for="(teamArray, index) in splitTeam(2)"
+        :key="`${index}-team-medium`"
+      >
+        <b-col
+          md="6"
           v-for="(person, index) in teamArray"
           :key="`person-${index}`"
         >
@@ -45,6 +58,20 @@ import team from "@/static/team";
 export default {
   name: "TheFourthSection",
   data: () => ({ team }),
+  methods: {
+    splitTeam: function(splitAt) {
+      let threes = [];
+      let intermediate = [];
+      this.team.forEach(teamMember => {
+        intermediate.push(teamMember);
+        if (intermediate.length === splitAt) {
+          threes.push(intermediate);
+          intermediate = [];
+        }
+      });
+      return threes;
+    }
+  },
   components: {
     BrandedText,
     TeamPerson
@@ -58,6 +85,16 @@ export default {
   margin-top: 60px
 .contact-row
   margin-bottom: 160px
+  @media only screen and (max-width: 900px)
+    display: none
+.contact-medium-row
+  margin-bottom: 130px
+  @media only screen and (min-width: 901px)
+    display: none
+  @media only screen and (max-width: 767px)
+    margin-bottom: 0
+    & > div
+      margin-bottom: 70px
 #contact-row-0
   position: relative
   &::after

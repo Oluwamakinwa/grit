@@ -34,14 +34,14 @@
             <b-col md="3">
               <img :src="logo" />
             </b-col>
-            <b-col md="3">
+            <b-col md="6">
               <ul>
                 <li>TechStars Colorado, USA</li>
                 <li>Copyright © 2020 Grit</li>
                 <li>All rights reserved.</li>
               </ul>
             </b-col>
-            <b-col md="3" offset-md="3">
+            <b-col md="3">
               <ul>
                 <li><a href="#">Terms and conditions</a></li>
                 <li><a href="#">Privacy policy</a></li>
@@ -77,6 +77,9 @@ footer
     background-repeat: no-repeat
     padding-bottom: 210px
     position: relative
+    @media only screen and (max-width: 767px)
+      background-position-y: 180%
+      background-position-x: center
     .col
       position: relative
       z-index: 3
@@ -121,13 +124,23 @@ footer
       height: 1px
     .foot-notes
       margin-top: 60px
+    img
+      @media only screen and (max-width: 767px)
+        display: block
+        margin: 0 auto
+          bottom: 50px
     ul
       list-style: none
+      @media only screen and (max-width: 767px)
+        margin-bottom: 50px
       li
         color: white
         font-family: 'Gordita Light', sans-serif
         font-size: 16px
         margin-bottom: 60px
+        @media only screen and (max-width: 767px)
+          text-align: center
+          width: 100%
         & a
           color: white
           font-family: 'Gordita Medium', sans-serif

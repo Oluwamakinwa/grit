@@ -19,6 +19,8 @@ div
     padding-left: 40px
     margin-bottom: 20px
     position: relative
+    @media only screen and (max-width: 576px)
+      width: 90%
     fieldset
       border: 1px solid white
       position: absolute

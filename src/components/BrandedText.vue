@@ -2,7 +2,7 @@
   <div :class="{ dark }" id="branded-text" class="branded-text">
     <h2><slot></slot></h2>
     <!-- <h2 class="shadow"><slot></slot></h2> -->
-    <svg stroke-width="1.5" font-size="95" viewbox="0 0 300 100">
+    <svg stroke-width="1.5" viewbox="0 0 300 100">
       <text
         class="text"
         y="100"
@@ -39,10 +39,26 @@ export default {
       const computedH2Styles = window.getComputedStyle(h2);
       const h2Width = computedH2Styles.getPropertyValue("width");
       const svg = this.$el.getElementsByTagName("svg")[0];
+      let initialY;
       let increment = Math.round(h2.offsetHeight / 92);
+      if (window.outerWidth >= 1200) initialY = 92;
+      else if (window.outerWidth > 991 && window.outerWidth <= 1199)
+        initialY = 83;
+      else if (window.outerWidth > 932 && window.outerWidth <= 991)
+        initialY = 79;
+      else if (window.outerWidth > 879 && window.outerWidth <= 932)
+        initialY = 73;
+      else if (window.outerWidth > 827 && window.outerWidth <= 879)
+        initialY = 67;
+      else if (window.outerWidth > 607 && window.outerWidth <= 826)
+        initialY = 58;
+      else initialY = 55;
       svg
         .getElementsByTagName("text")[0]
-        .setAttribute("y", 92 + (increment >= 2 ? increment * 3 : increment));
+        .setAttribute(
+          "y",
+          initialY + (increment >= 2 ? increment * 3 : increment)
+        );
 
       svg.setAttribute("width", h2Width);
       svg.setAttribute("height", h2.offsetHeight + 20);
@@ -98,6 +114,19 @@ export default {
     width: 100%
     transition: 2s
     stroke: #ffffff70
+    font-size: 95px
+    @media only screen and (max-width: 1199px)
+      font-size: 85px
+    @media only screen and (max-width: 991px)
+      font-size: 80px
+    @media only screen and (max-width: 932px)
+      font-size: 75px
+    @media only screen and (max-width: 879px)
+      font-size: 70px
+    @media only screen and (max-width: 827px)
+      font-size: 60px
+    @media only screen and (max-width: 607px)
+      font-size: 53px
     .text-shadow
       font-family: 'Gordita Black', sans-serif
   h2
@@ -106,6 +135,18 @@ export default {
     font-size: 95px
     position: relative
     z-index: 2
+    @media only screen and (max-width: 1199px)
+      font-size: 85px
+    @media only screen and (max-width: 991px)
+      font-size: 80px
+    @media only screen and (max-width: 932px)
+      font-size: 75px
+    @media only screen and (max-width: 879px)
+      font-size: 70px
+    @media only screen and (max-width: 827px)
+      font-size: 60px
+    @media only screen and (max-width: 607px)
+      font-size: 53px
   &.dark
     h2
       color: #0b0c07

@@ -63,7 +63,9 @@ export default {
     padding-top: 7rem
     color: white
     font-size: 37px
-    line-height: 120%
+    line-height: 130%
+    @media only screen and (max-width: 991px)
+      font-size: 30px
   #roadmap-button
     display: inline-flex
     align-items: center

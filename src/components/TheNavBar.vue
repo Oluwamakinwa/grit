@@ -11,10 +11,23 @@
               <a href="#">partners</a>
               <a href="#">about us</a>
             </div>
+            <div class="menu" @click="toggleshow" v-show="!show">
+              <div class="bars">
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
           </div>
         </b-col>
       </b-row>
     </b-container>
+    <div v-show="show" class="right-way">
+      <a href="#">features</a>
+      <a href="#">partners</a>
+      <a href="#">about us</a>
+      <button @click="toggleshow">&times;</button>
+    </div>
   </div>
 </template>
 <script>
@@ -22,8 +35,14 @@ import logo from "@/assets/img/logo.svg";
 export default {
   name: "TheNavBar",
   data: () => ({
-    logo
-  })
+    logo,
+    show: false
+  }),
+  methods: {
+    toggleshow: function() {
+      this.show = !this.show;
+    }
+  }
 };
 </script>
 <style lang="sass">
@@ -33,15 +52,72 @@ export default {
   background: #0B0C07
   color: white
   padding: 20px
+  position: relative
+  .menu
+    .bars div
+      width: 32.5px
+      height: 3.13px
+      background: white
+      margin: 7px 0
   .nav-content
     display: flex
     justify-content: space-between
     align-items: center
+
     .right
       & > a:not(:first-of-type)
         margin-left: 80px
+      @media only screen and (max-width: 767px)
+        display: none
+      button
+        display: none
       a
         color: white
         font-family: 'Gordita Medium', sans-serif
         font-size: 18px
+        position: relative
+        text-decoration: none
+        &:after
+          content: ''
+          display: block
+          width: 0
+          height: 2px
+          color: white
+          transition: width .4s
+          position: absolute
+          background: white
+          left: -6px
+          top: calc(50% - 1px)
+        &:hover
+          &:after
+            width: calc(100% + 12px)
+.right-way
+  display: none
+  @media only screen and (max-width: 767px)
+    position: fixed
+    top: 90px
+    left: 0
+    width: 100%
+    height: calc(100vh - 90px)
+    background: #0B0C07
+    z-index: 99
+    display: flex
+    flex-direction: column
+    padding: 12px 30px
+      top: 80px
+    align-items: center
+    button
+      display: block
+      border: none
+      background: transparent
+      color: white
+      font-size: 3.5rem
+      position: absolute
+      top: 0
+      right: 30px
+    a
+      margin-left: 20px !important
+      font-size: 32px
+      margin-bottom: 2rem
+      color: white
 </style>

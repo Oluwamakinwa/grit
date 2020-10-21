@@ -39,10 +39,12 @@ export default {
   }
 };
 </script>
-<style lang="sass">
+<style lang="sass" scoped>
 .second-section
   background-color: #0B0C07
   padding: 3rem 0
+  position: relative
+  z-index: 2
   p
     color: #fff
     font-size: 1rem
@@ -53,4 +55,13 @@ export default {
     height: 100%
     display: flex
     align-items: center
+    transform: translateY(0px)
+    animation: float 6s ease-in-out infinite
+  @keyframes float
+    0%
+      transform: translateY(0px)
+    50%
+      transform: translateY(-20px)
+    100%
+      transform: translateY(0px)
 </style>

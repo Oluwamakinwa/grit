@@ -7,6 +7,7 @@
     <TheThirdSection />
     <TheFourthSection />
     <TheFooter />
+    <TheLoader />
   </div>
 </template>
 
@@ -19,9 +20,15 @@ import TheSecondSection from "./sections/TheSecondSection.vue";
 import TheThirdSection from "./sections/TheThirdSection.vue";
 import TheFourthSection from "./sections/TheFourthSection.vue";
 import TheFooter from "@/components/TheFooter.vue";
+import TheLoader from "./sections/TheLoader.vue";
 
 export default {
   name: "Home",
+  created() {
+    window.addEventListener("load", function() {
+      document.getElementById("loader-div").style.display = "none";
+    });
+  },
   components: {
     TheNavBar,
     TheHeaderSection,
@@ -29,7 +36,8 @@ export default {
     TheSecondSection,
     TheThirdSection,
     TheFourthSection,
-    TheFooter
+    TheFooter,
+    TheLoader
   }
 };
 </script>
