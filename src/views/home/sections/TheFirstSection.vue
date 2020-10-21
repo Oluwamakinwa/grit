@@ -28,7 +28,7 @@
 </template>
 <script>
 import BrandedText from "@/components/BrandedText";
-import image from "@/assets/img/image_1.svg";
+import image from "@/assets/img/image_1.png";
 export default {
   name: "TheFirstSection",
   data: () => ({
