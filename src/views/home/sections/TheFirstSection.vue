@@ -2,7 +2,7 @@
   <section class="second-section">
     <b-container>
       <b-row>
-        <b-col>
+        <b-col md="6">
           <BrandedText>Industrial Revolution 4.0</BrandedText>
           <p class="gordita-light mt-4">
             4.5MM Black Americans will lose their jobs to automation by 2030
@@ -17,7 +17,7 @@
             This is where Grit comes in.
           </p>
         </b-col>
-        <b-col>
+        <b-col md="6">
           <div class="imgg">
             <img :src="image" />
           </div>

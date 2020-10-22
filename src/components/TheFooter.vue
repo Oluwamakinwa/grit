@@ -15,12 +15,15 @@
                   share this page with anyone who you think may be interested in
                   Grit. Thanks!
                 </p>
-                <a class="gordita-medium" href="#">Take the Survey</a>
               </div>
+            </div>
+            <div class="bttn-container">
+              <a class="gordita-medium" href="#">Take the Survey</a>
             </div>
           </b-col>
         </b-row>
       </b-container>
+      <img :src="mobilefooter" class="mobile-footer" />
     </section>
     <section class="contact-section">
       <div class="footer-content">
@@ -57,9 +60,10 @@
 <script>
 import BrandedText from "@/components/BrandedText";
 import logo from "@/assets/img/logo.svg";
+import mobilefooter from "@/assets/img/mobilefooter.png";
 export default {
   name: "TheFooter",
-  data: () => ({ logo }),
+  data: () => ({ logo, mobilefooter }),
   components: {
     BrandedText
   }
@@ -69,6 +73,26 @@ export default {
 footer
   background-color: #12140C
   margin-top: 32px
+  .mobile-footer
+    width: 100%
+    height: auto
+    position: relative
+    z-index: 1
+    opacity: .5
+  .bttn-container
+    position: relative
+    z-index: 10
+    padding-left: 3re,
+    @media only screen and (max-width: 767px)
+      display: flex
+      justify-content: center
+      padding-left: 0
+    a
+      display: inline-block
+      background: white
+      color: #000
+      padding: 15px 30px
+      margin-top: 60px
   .survey-section
     padding-top: 105px
     background-image: url(../assets/img/footer.png)
@@ -78,8 +102,10 @@ footer
     padding-bottom: 210px
     position: relative
     @media only screen and (max-width: 767px)
-      background-position-y: 180%
+      background-position-y: 40vh
+      background-size: contain
       background-position-x: center
+      background-image: none
     .col
       position: relative
       z-index: 3
@@ -92,7 +118,7 @@ footer
       height: 50%
       width: 100%
       background: linear-gradient(180deg, rgba(11, 12, 7, 0.0001), #1A1C11)
-      z-index: 1
+      z-index: 2
   .launch-plea
     display: flex
     margin-top: 30px
@@ -108,12 +134,6 @@ footer
       font-size: 16px
       line-height: 25px
       margin-bottom: 0
-    a
-      display: inline-block
-      background: white
-      color: #000
-      padding: 15px 30px
-      margin-top: 60px
   .contact-section
     background: #1A1C11
     padding-top: 180px

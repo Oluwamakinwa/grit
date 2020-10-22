@@ -5,7 +5,7 @@
         <b-col>
           <h2 class="background gordita-black p-0 mt-2">GritScore</h2>
           <p class="gordita-light mb-0 mt-0 pt-0 leading-to">Grit is</p>
-          <BrandedText dark>everyone's unfair advantage</BrandedText>
+          <BrandedText small dark>everyone's unfair advantage</BrandedText>
         </b-col>
       </b-row>
       <b-row class="mt-5">
@@ -43,22 +43,29 @@ export default {
   name: "TheSecondSection",
   data: () => ({ largebanner }),
   mounted() {
-    window.addEventListener("load", this.calculatePush());
+    window.addEventListener("load", this.calculatePush);
+    window.addEventListener("resize", this.calculatePush);
+  },
+  destroyed() {
+    window.removeEventListener("load", this.calculatePush);
+    window.removeEventListener("resize", this.calculatePush);
   },
   components: {
     BrandedText
   },
   methods: {
     calculatePush() {
+      const fourthSection = document.getElementsByClassName(
+        "the-fourth-section"
+      )[0];
       if (window.outerWidth <= 767) {
         const width = document.getElementById("calculated").offsetWidth;
-
         const height = (width * 1781.64) / 694;
-        console.log(height / 2);
         this.$el.style.paddingBottom = `${height / 2}px`;
-        document.getElementsByClassName(
-          "the-fourth-section"
-        )[0].style.paddingTop = `${height / 2 + 50}px`;
+        fourthSection.style.paddingTop = `${height / 2 + 50}px`;
+      } else {
+        this.$el.style.paddingBottom = "107px";
+        fourthSection.style.paddingTop = "4rem";
       }
     }
   }

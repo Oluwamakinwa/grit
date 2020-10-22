@@ -21,6 +21,7 @@
           </div>
         </b-col>
       </b-row>
+      <div class="divider"></div>
     </b-container>
     <div v-show="show" class="right-way">
       <a href="#">features</a>
@@ -53,7 +54,17 @@ export default {
   color: white
   padding: 20px
   position: relative
+  .divider
+    width: 100%
+    height: 1px
+    background-color: #46483F
+    position: relative
+    top: 20px
+    @media only screen and (min-width: 768px)
+      display: none
   .menu
+    @media only screen and (min-width: 768px)
+      display: none
     .bars div
       width: 32.5px
       height: 3.13px
