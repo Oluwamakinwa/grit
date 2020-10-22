@@ -79,6 +79,8 @@ footer
     position: relative
     z-index: 1
     opacity: .5
+    @media screen and (min-width: 767px)
+      display: none
   .bttn-container
     position: relative
     z-index: 10

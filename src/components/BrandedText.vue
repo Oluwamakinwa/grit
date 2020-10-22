@@ -28,6 +28,9 @@ export default {
     @media only screen and (min-width: 320px)
       &.small
         font-size: calc(30px + 6 * ((100vw - 320px) / 680))
+      &.brand-shadow
+        top: 3px
+        left: 3px
       font-size: calc(42px + 6 * ((100vw - 320px) / 680))
     @media only screen and (min-width: 354px)
       &.small
@@ -77,8 +80,8 @@ export default {
     z-index: 3
   .brand-shadow
     position: absolute
-    top: 5px
-    left: 5px
+    top: 0.3125rem
+    left: 0.3125rem
     color: #0b0c07
     z-index: 1
     text-shadow: -1px -1px 0 #ffffff50,1px -1px 0 #ffffff50,-1px 1px 0 #ffffff50,1px 1px 0 #ffffff50
