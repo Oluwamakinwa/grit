@@ -1,7 +1,11 @@
 <template>
   <div :class="{ dark, small }" class="branded-text">
-    <h2 :class="{ small }"><slot></slot></h2>
-    <h2 :class="{ small }" class="brand-shadow"><slot></slot></h2>
+    <h2 :class="{ small }">
+      <slot></slot>
+    </h2>
+    <h2 :class="{ small }" class="brand-shadow">
+      <slot></slot>
+    </h2>
   </div>
 </template>
 <script>
@@ -22,6 +26,7 @@ export default {
 <style lang="sass" scoped>
 .branded-text
   position: relative
+
   h2
     font-family: 'Gordita Black', sans-serif
     color: white
@@ -29,8 +34,8 @@ export default {
       &.small
         font-size: calc(30px + 6 * ((100vw - 320px) / 680))
       &.brand-shadow
-        top: 3px
-        left: 3px
+        top: 1.5px
+        left: 1.5px
       font-size: calc(42px + 6 * ((100vw - 320px) / 680))
     @media only screen and (min-width: 354px)
       &.small
@@ -74,22 +79,26 @@ export default {
       font-size: calc(71px + 6 * ((100vw - 320px) / 680))
     @media only screen and (min-width: 1200px)
       font-size: 95px
+      &.brand-shadow
+        top: 0.3125rem
+        left: 0.3125rem
     margin: 0
     padding: 0
     position: relative
     z-index: 3
+
   .brand-shadow
     position: absolute
-    top: 0.3125rem
-    left: 0.3125rem
     color: #0b0c07
     z-index: 1
-    text-shadow: -1px -1px 0 #ffffff50,1px -1px 0 #ffffff50,-1px 1px 0 #ffffff50,1px 1px 0 #ffffff50
+    text-shadow: -1px -1px 0 #ffffff50, 1px -1px 0 #ffffff50, -1px 1px 0 #ffffff50, 1px 1px 0 #ffffff50
+
   &.dark
     h2
       color: #0b0c07
+
     .brand-shadow
       color: white
       background-color: transparent
-      text-shadow: -1px -1px 0 #0b0c0750,1px -1px 0 #0b0c0750,-1px 1px 0 #0b0c0750,1px 1px 0 #0b0c0750
+      text-shadow: -1px -1px 0 #0b0c0750, 1px -1px 0 #0b0c0750, -1px 1px 0 #0b0c0750, 1px 1px 0 #0b0c0750
 </style>
