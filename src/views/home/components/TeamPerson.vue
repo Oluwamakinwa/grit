@@ -1,6 +1,6 @@
 <template>
   <div class="team-person">
-    <img :src="person.image" />
+    <img :src="person.image" :alt="person.name" />
     <div class="text">
       <p class="gordita-medium brand-dark-fore">{{ person.name }}</p>
       <ul>
@@ -29,6 +29,7 @@ export default {
 .team-person
   width: 100%
   display: flex
+  align-items: flex-start
   .text
     margin-left: 10px
     display: flex
@@ -43,5 +44,7 @@ export default {
       font-size: 16px
   img
     width: 50%
+    height: auto
     max-width: 220px
+    display: flex
 </style>
