@@ -1,7 +1,7 @@
 <template>
   <div class="team-person">
-    <img :src="person.image" :alt="person.name" />
-    <div class="text">
+    <img :src="person.image" ref="image" :alt="person.name" />
+    <div class="text" ref="text">
       <p class="gordita-medium brand-dark-fore">{{ person.name }}</p>
       <ul>
         <li
@@ -18,6 +18,13 @@
 <script>
 export default {
   name: "TeamPerson",
+  mounted() {
+    this.$refs.image.addEventListener("load", () => {
+      this.$refs.text.style.minHeight = window
+        .getComputedStyle(this.$refs.image)
+        .getPropertyValue("height");
+    });
+  },
   props: {
     person: {
       type: Object

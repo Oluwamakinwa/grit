@@ -16,12 +16,13 @@
               <input
                 class="gordita-light"
                 placeholder="Enter your email to get notified"
+                aria-label="Enter your email to get notified when we launch"
               />
               <button>Notify Me!</button>
             </form>
-            <p class="italics">Get notified when we lunch</p>
+            <p class="italics">Get notified when we launch</p>
           </div>
-          <img src="../../../assets/img/hero.png" />
+          <img alt="Grit launches soon" src="../../../assets/img/hero.png" />
         </b-col>
       </b-row>
     </b-container>
@@ -110,7 +111,7 @@ export default {
         color: #fff
     button
       background-color: #fff
-      font-family: 'Gordita Medium'
+      font-family: 'Gordita Medium', sans-serif
       font-size: 1rem
       display: flex
       align-items: center
