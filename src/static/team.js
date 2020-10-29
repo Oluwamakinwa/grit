@@ -17,22 +17,22 @@ export default [
   },
   {
     name: "Dave Mayer",
-    roles: ["Co-Founder", "COO"],
+    roles: ["Partnerships"],
     image: davemayer
   },
   {
-    name: "Justin Sampson",
-    roles: ["Co-Founder", "President"],
+    name: "Justin Samson",
+    roles: ["Co-Founder", "COO"],
     image: justinsampson
   },
   {
     name: "Rodney Sampson",
-    roles: ["Co-Founder", "Advisor"],
+    roles: ["Co-Founder", "Sr. Advisor"],
     image: rodneysampson
   },
   {
     name: "Dave Parker",
-    roles: ["Advisor"],
+    roles: ["Sr. Advisor"],
     image: daveparker
   }
 ];

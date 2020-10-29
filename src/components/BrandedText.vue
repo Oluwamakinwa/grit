@@ -80,8 +80,8 @@ export default {
     @media only screen and (min-width: 1200px)
       font-size: 95px
       &.brand-shadow
-        top: 0.3125rem
-        left: 0.3125rem
+        top: 4px
+        left: 4px
     margin: 0
     padding: 0
     position: relative

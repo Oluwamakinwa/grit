@@ -43,7 +43,7 @@
           <p class="leading-to gordita-light text-center">
             "We created GRIT to democratize access to ISA's because we
             understand financial inclusion is a critical step in supporting
-            future economic livelihoods for marginalized companies and will
+            future economic livelihoods for marginalized communities and will
             serve as model for future impact and shared prosperity."
           </p>
         </b-col>
