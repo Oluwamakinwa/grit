@@ -1,3 +1,4 @@
+import sslRedirect from "heroku-ssl-redirect";
 const express = require("express");
 const serveStatic = require("serve-static");
 const path = require("path");
@@ -17,19 +18,12 @@ mongoose.connect(process.env.MONGO_DB_CONNECTION, {
   useUnifiedTopology: true
 });
 
-const redirector = require("redirect-https")({
-  body: "<!-- Hello Developer! Please use HTTPS instead: {{ URL }} -->"
-});
-
 app.get("/initialize", initialize);
 app.get("/site_data", site_data);
 app.post("/add_email", add_email);
 app.get("/emails_as_csv", emails_as_csv);
 
-if (!process.env.ENVIRONMENT || process.env.ENVIRONMENT !== "dev") {
-  app.use("/", redirector);
-}
-
+app.use(sslRedirect());
 // here we are configuring dist to serve app files
 app.use("/", serveStatic(path.join(__dirname, "/dist")));
 
