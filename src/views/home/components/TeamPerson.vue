@@ -9,7 +9,7 @@
           v-for="(role, index) in person.roles"
           :key="`contact-${index}`"
         >
-          {{ role }}
+          {{ role.text }}
         </li>
       </ul>
     </div>

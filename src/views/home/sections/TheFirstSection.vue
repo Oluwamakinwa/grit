@@ -3,23 +3,21 @@
     <b-container>
       <b-row>
         <b-col md="6">
-          <BrandedText>Industrial Revolution 4.0</BrandedText>
+          <BrandedText>{{ websiteData.firstSection.mainText }}</BrandedText>
           <p class="gordita-light mt-4">
-            4.5MM Black Americans will lose their jobs to automation by 2030
-            while millions of high paying tech jobs go unfilled.
+            {{ websiteData.firstSection.subText }}
           </p>
-          <p class="gordita-medium">
-            Coding bootcamps are key to preparing for these jobs, but Black
-            students are being denied access to Income Sharing Agreements needed
-            to finance these programmes.
-          </p>
-          <p class="gordita-medium">
-            This is where Grit comes in.
+          <p
+            class="gordita-medium"
+            v-for="(paragraph, index) in websiteData.firstSection.paragraph"
+            :key="`secondparaphraphp-${index}`"
+          >
+            {{ paragraph.text }}
           </p>
         </b-col>
         <b-col md="6">
           <div class="imgg">
-            <img :src="image" />
+            <img :src="image" alt="The 4th industrial revolution" />
           </div>
         </b-col>
       </b-row>
@@ -34,6 +32,9 @@ export default {
   data: () => ({
     image
   }),
+  props: {
+    websiteData: Object
+  },
   components: {
     BrandedText
   }

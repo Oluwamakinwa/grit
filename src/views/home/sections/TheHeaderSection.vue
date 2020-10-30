@@ -5,35 +5,67 @@
         <b-col md="6">
           <div class="hero-text">
             <p class="gordita-plain first">
-              Democratizing access to opportunity and capital for
+              {{ websiteData.hero.leadingToMainText }}
             </p>
-            <BrandedText>the future of work</BrandedText>
+            <BrandedText>{{ websiteData.hero.mainText }}</BrandedText>
             <p class="gordita-light second">
-              Grit helps bootcamps and ISA funds extend educational financing to
-              untapped communities more equitably.
+              {{ websiteData.hero.mainSubText }}
             </p>
-            <form class="email-input-form">
+            <form @submit="submitEmail" class="email-input-form">
               <input
                 class="gordita-light"
                 placeholder="Enter your email to get notified"
                 aria-label="Enter your email to get notified when we launch"
+                v-model="email"
+                ref="email"
               />
-              <button>Notify Me!</button>
+              <button type="submit">Notify Me!</button>
             </form>
-            <p class="italics">Get notified when we launch</p>
+            <p class="italics">{{ websiteData.hero.emailFormSubText }}</p>
           </div>
           <img alt="Grit launches soon" src="../../../assets/img/hero.png" />
         </b-col>
       </b-row>
     </b-container>
+    <email-alert v-if="showAlert" :type="type" :content="content" />
   </div>
 </template>
 <script>
 import BrandedText from "@/components/BrandedText";
+import EmailAlert from "@/views/home/components/EmailAlert";
+import axios from "axios";
 export default {
   name: "TheHeaderSection",
+  data: () => ({ email: "", showAlert: false, type: "success", content: "" }),
+  methods: {
+    submitEmail: function(e) {
+      e.preventDefault();
+      axios
+        .post("/add_email", {
+          email: this.email
+        })
+        .then(() => {
+          this.email = "";
+          this.content = "Email added successfully";
+          this.type = "success";
+          this.showAlert = true;
+          setTimeout(() => (this.showAlert = false), 3000);
+        })
+        .catch(err => {
+          this.$refs.email.select();
+          this.content = err.response.data.message;
+          this.type = "error";
+          this.showAlert = true;
+          setTimeout(() => (this.showAlert = false), 3000);
+        });
+    }
+  },
   components: {
-    BrandedText
+    BrandedText,
+    EmailAlert
+  },
+  props: {
+    websiteData: Object
   }
 };
 </script>

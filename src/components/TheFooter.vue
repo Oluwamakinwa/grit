@@ -4,14 +4,12 @@
       <b-container>
         <b-row>
           <b-col md="6">
-            <BrandedText>Before we launch</BrandedText>
+            <BrandedText>{{ websiteData.footer.mainText }}</BrandedText>
             <div class="launch-plea">
               <BrandedText>.</BrandedText>
               <div>
                 <p class="gordita-regular">
-                  If you haven't already, take a few minutes to complete our
-                  survey or share this page with anyone who you think may be
-                  interested in Grit. Thanks!
+                  {{ websiteData.footer.surveyText }}
                 </p>
               </div>
             </div>
@@ -37,8 +35,8 @@
             </b-col>
             <b-col md="6">
               <ul>
-                <li>Techstars Colorado, USA</li>
-                <li>Copyright © 2020 Grit</li>
+                <li>{{ websiteData.footer.address }}</li>
+                <li>{{ websiteData.footer.copyrightText }}</li>
                 <li>All rights reserved.</li>
               </ul>
             </b-col>
@@ -51,7 +49,7 @@
                   <a href="#">Privacy policy</a>
                 </li>
                 <li>
-                  <a href="#">Back to top</a>
+                  <a @click="backtotop" href="#">Back to top</a>
                 </li>
               </ul>
             </b-col>
@@ -65,12 +63,22 @@
 import BrandedText from "@/components/BrandedText";
 import logo from "@/assets/img/logo.svg";
 import mobilefooter from "@/assets/img/mobilefooter.png";
+import { scrollToTop } from "@/utils/slider";
 
 export default {
   name: "TheFooter",
+  methods: {
+    backtotop: function(e) {
+      e.preventDefault();
+      scrollToTop(2000);
+    }
+  },
   data: () => ({ logo, mobilefooter }),
   components: {
     BrandedText
+  },
+  props: {
+    websiteData: Object
   }
 };
 </script>

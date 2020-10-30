@@ -3,10 +3,14 @@
     <b-container>
       <b-row>
         <b-col>
-          <p class="leading-to gordita-light mt-5">This is</p>
-          <BrandedText dark>who we are</BrandedText>
+          <p class="leading-to gordita-light mt-5">
+            {{ websiteData.fourthSection.leadingToMainText }}
+          </p>
+          <BrandedText dark
+            >{{ websiteData.fourthSection.mainText }}
+          </BrandedText>
           <p class="leading-to gordita-light">
-            Our grit was born from tragedy and opportunity
+            {{ websiteData.fourthSection.mainSubText }}
           </p>
         </b-col>
       </b-row>
@@ -15,7 +19,10 @@
         class="contact-row"
         v-for="(teamArray, index) in splitTeam(3)"
         :key="`${index}-team`"
-        :id="`contact-row-${index}`"
+        :class="{
+          'line-below': index !== splitTeam(3).length - 1,
+          'last-row': index === splitTeam(3).length - 1
+        }"
       >
         <b-col
           md="4"
@@ -25,6 +32,8 @@
           <TeamPerson :person="person" />
         </b-col>
       </b-row>
+
+      <!--      Mobile view of the contacts with the rows slit in twos-->
       <b-row
         class="contact-medium-row"
         v-for="(teamArray, index) in splitTeam(2)"
@@ -41,10 +50,7 @@
       <b-row>
         <b-col>
           <p class="leading-to gordita-light text-center">
-            "We created GRIT to democratize access to ISA's because we
-            understand financial inclusion is a critical step in supporting
-            future economic livelihoods for marginalized communities and will
-            serve as model for future impact and shared prosperity."
+            "{{ websiteData.fourthSection.quoteText }}"
           </p>
         </b-col>
       </b-row>
@@ -55,14 +61,18 @@
 import BrandedText from "@/components/BrandedText";
 import TeamPerson from "../components/TeamPerson";
 import team from "@/static/team";
+
 export default {
   name: "TheFourthSection",
   data: () => ({ team }),
+  props: {
+    websiteData: Object
+  },
   methods: {
     splitTeam: function(splitAt) {
       let threes = [];
       let intermediate = [];
-      this.team.forEach(teamMember => {
+      this.websiteData.fourthSection.team.forEach(teamMember => {
         intermediate.push(teamMember);
         if (intermediate.length === splitAt) {
           threes.push(intermediate);
@@ -81,12 +91,29 @@ export default {
 <style lang="sass" scoped>
 .sub
   font-size: 37px
+
 .initial-contact-margin
   margin-top: 60px
+
 .contact-row
   margin-bottom: 160px
   @media only screen and (max-width: 900px)
     display: none
+
+  &.line-below
+    position: relative
+
+    &::after
+      content: ''
+      position: absolute
+      width: 80%
+      left: 10%
+      background: #12140c50
+      height: 1px
+      top: calc(100% + 80px)
+      display: block
+  &.last-row
+    margin-bottom: 80px
 .contact-medium-row
   margin-bottom: 130px
   @media only screen and (min-width: 901px)
@@ -95,17 +122,4 @@ export default {
     margin-bottom: 0
     & > div
       margin-bottom: 70px
-#contact-row-0
-  position: relative
-  &::after
-    content: ''
-    position: absolute
-    width: 80%
-    left: 10%
-    background: #12140c50
-    height: 1px
-    top: calc(100% + 80px)
-    display: block
-#contact-row-1
-  margin-bottom: 80px
 </style>
