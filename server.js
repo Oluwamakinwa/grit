@@ -1,4 +1,3 @@
-var sslRedirect = require("heroku-ssl-redirect").default;
 const express = require("express");
 const serveStatic = require("serve-static");
 const path = require("path");
@@ -24,7 +23,15 @@ app.post("/add_email", add_email);
 app.get("/emails_as_csv", emails_as_csv);
 
 // enable ssl redirect
-app.use(sslRedirect());
+app.use(function(req, res, next) {
+  if (req.secure) {
+    // request was via https, so do no special handling
+    next();
+  } else {
+    // request was via http, so redirect to https
+    res.redirect("https://" + req.headers.host + req.url);
+  }
+});
 // here we are configuring dist to serve app files
 app.use("/", serveStatic(path.join(__dirname, "/dist")));
 
