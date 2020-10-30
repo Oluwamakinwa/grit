@@ -3,37 +3,34 @@
     <b-container>
       <b-row>
         <b-col md="6" offset-md="6">
-          <DarkCard title="Students">
+          <DarkCard
+            v-for="(cardData, index) in websiteData.thirdSection.blackCards"
+            :key="`thirdsectioncarddata-${index}`"
+            :title="cardData.title"
+            :class="{ 'large-mt': index !== 0 }"
+          >
             <ul>
-              <li>Connect with the best coding bootcamps</li>
-              <li>Secure ISA financing to pay for bootcamp</li>
-              <li>Reskill for a high paying tech role</li>
-            </ul>
-          </DarkCard>
-          <DarkCard class="large-mt" title="Bootcamps">
-            <ul>
-              <li>Attract and enroll more diverse and qualified students</li>
-              <li>Grit Verified students are pre-approved for financing</li>
-            </ul>
-          </DarkCard>
-          <DarkCard class="large-mt" title="ISA Funds">
-            <ul>
-              <li>Unlock new opportunities, markets and capital</li>
+              <li
+                v-for="(reason, indexx) in cardData.content"
+                :key="`thirdsectionreasoncarddata-${index}-${indexx}`"
+              >
+                {{ reason.text }}
+              </li>
             </ul>
           </DarkCard>
           <div class="other-section">
             <p class="eye-catcher gordita-light">
-              Do you recognize potential and fundability when you see it?
+              {{ websiteData.thirdSection.leadingToMainText }}
             </p>
-            <BrandedText>we do.</BrandedText>
+            <BrandedText>{{ websiteData.thirdSection.mainText }}</BrandedText>
           </div>
           <div class="w-100 cen">
             <button id="roadmap-button" class="gordita-medium">
               <div class="pseudo-button">
                 <span>
-                  Download our Roadmap
+                  {{ websiteData.thirdSection.actionButtonText }}
                 </span>
-                <img :src="downIcon" />
+                <img :src="downIcon" alt="Download our survey" />
               </div>
             </button>
           </div>
@@ -51,6 +48,9 @@ export default {
   components: {
     BrandedText,
     DarkCard
+  },
+  props: {
+    websiteData: Object
   },
   data: () => ({ downIcon })
 };
@@ -78,7 +78,7 @@ $scaler: 10vw
     @media only screen and (min-width: 1000px)
       font-size: 37px
     line-height: 130%
-    margin-bottom: 0px
+    margin-bottom: 0
     // @media only screen and (max-width: 991px)
     //   font-size: 30px
   #roadmap-button
@@ -104,7 +104,6 @@ $scaler: 10vw
     .pseudo-button
       background-color: #000
       display: inline-flex
-      padding: 22px 25px
       color: white
       font-size: 16px
       border: none

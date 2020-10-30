@@ -3,34 +3,40 @@
     <b-container id="calculated">
       <b-row>
         <b-col>
-          <h2 class="background gordita-black p-0 mt-2">GritScore</h2>
-          <p class="gordita-light mb-0 mt-0 pt-0 leading-to">Grit is</p>
-          <BrandedText small dark>everyone's unfair advantage</BrandedText>
+          <h2 class="background gordita-black p-0 mt-2">
+            {{ websiteData.secondSection.backgroundText }}
+          </h2>
+          <p class="gordita-light mb-0 mt-0 pt-0 leading-to">
+            {{ websiteData.secondSection.leadingToMainText }}
+          </p>
+          <BrandedText small dark>{{
+            websiteData.secondSection.mainText
+          }}</BrandedText>
         </b-col>
       </b-row>
       <b-row class="mt-5">
         <b-col md="6" class="largebannercontainer">
-          <img :src="largebanner" class="largebanner" />
+          <img :src="largebanner" class="largebanner" alt="Decorative banner" />
         </b-col>
         <b-col md="6">
           <div class="black-text">
-            <p class="gordita-light">
-              We are leveraging alternative data and machine learning to build
-              an AI driven character based assesement of potential and
-              fundability. An individual's Grit score is based on things that
-              matter like bootcamp pre-work, recommendations, community service,
-              volunteerism, and perseverance over life challenges instead of the
-              biased traditional factors that inform ISA financing decisions
-              today.
-            </p>
-            <p class="gordita-light mt-5">
-              These are better indicators of program success and future
-              hire-ability.
+            <p
+              class="gordita-light"
+              v-for="(paragraph, index) in websiteData.secondSection.paragraph"
+              :key="`secondsectionp-${index}`"
+              :class="{ 'mt-5': index !== 0 }"
+            >
+              {{ paragraph.text }}
             </p>
           </div>
         </b-col>
         <b-col md="6" class="largebannercontainer sm">
-          <img id="pushed-banner" :src="largebanner" class="largebanner" />
+          <img
+            alt="Decorative banner"
+            id="pushed-banner"
+            :src="largebanner"
+            class="largebanner"
+          />
         </b-col>
       </b-row>
     </b-container>
@@ -49,6 +55,9 @@ export default {
   destroyed() {
     window.removeEventListener("load", this.calculatePush);
     window.removeEventListener("resize", this.calculatePush);
+  },
+  props: {
+    websiteData: Object
   },
   components: {
     BrandedText
