@@ -22,15 +22,13 @@ app.get("/site_data", site_data);
 app.post("/add_email", add_email);
 app.get("/emails_as_csv", emails_as_csv);
 
-// enable ssl redirect
-app.use(function(req, res, next) {
-  if (req.secure) {
-    // request was via https, so do no special handling
-    next();
-  } else {
-    // request was via http, so redirect to https
-    res.redirect("https://" + req.headers.host + req.url);
-  }
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === "production") {
+    if (req.headers["x-forwarded-proto"] !== "https")
+      // the statement for performing our redirection
+      return res.redirect("https://" + req.headers.host + req.url);
+    else return next();
+  } else return next();
 });
 // here we are configuring dist to serve app files
 app.use("/", serveStatic(path.join(__dirname, "/dist")));
