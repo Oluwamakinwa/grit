@@ -19,6 +19,7 @@ module.exports = (req, res) => {
       const csv = parser.parse(emails);
       res.header("Content-Type", "text/csv");
       res.attachment("emails.csv");
+      res.send("Your CSV file will be downloaded shortly");
       return res.send(csv);
     });
 };
