@@ -22,15 +22,6 @@ app.get("/site_data", site_data);
 app.post("/add_email", add_email);
 app.get("/emails_as_csv", emails_as_csv);
 
-app.use((req, res, next) => {
-  if (process.env.NODE_ENV === "production") {
-    if (req.headers.host === "seegrit.herokuapp.com")
-      return res.redirect(301, "https://www.seegrit.com");
-    if (req.headers["x-forwarded-proto"] !== "https")
-      return res.redirect("https://" + req.headers.host + req.url);
-    else return next();
-  } else return next();
-});
 // here we are configuring dist to serve app files
 app.use("/", serveStatic(path.join(__dirname, "/dist")));
 
