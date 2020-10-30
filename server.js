@@ -24,8 +24,9 @@ app.get("/emails_as_csv", emails_as_csv);
 
 app.use((req, res, next) => {
   if (process.env.NODE_ENV === "production") {
+    if (req.headers.host === "seegrit.herokuapp.com")
+      return res.redirect(301, "https://www.seegrit.com");
     if (req.headers["x-forwarded-proto"] !== "https")
-      // the statement for performing our redirection
       return res.redirect("https://" + req.headers.host + req.url);
     else return next();
   } else return next();
