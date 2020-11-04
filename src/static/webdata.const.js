@@ -102,7 +102,7 @@ module.exports = {
           "https://res.cloudinary.com/hotel-finder/image/upload/v1603988304/grit-team/davemayer_lbcdfc.png"
       },
       {
-        name: "Justin Samson",
+        name: "Justin Sampson",
         roles: [{ text: "Co-Founder" }, { text: "COO" }],
         image:
           "https://res.cloudinary.com/hotel-finder/image/upload/v1603988304/grit-team/justinsampson_vrxryo.png"

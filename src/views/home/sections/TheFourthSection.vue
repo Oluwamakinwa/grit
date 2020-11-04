@@ -79,6 +79,7 @@ export default {
           intermediate = [];
         }
       });
+      if (intermediate.length) threes.push(intermediate);
       return threes;
     }
   },

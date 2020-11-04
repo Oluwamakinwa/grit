@@ -32,6 +32,7 @@
           <b-row class="foot-notes">
             <b-col md="3">
               <img :src="logo" alt="Grit" />
+              <img class="techstars" :src="techstarsLogo" alt="Techstars" />
             </b-col>
             <b-col md="6">
               <ul>
@@ -62,6 +63,7 @@
 <script>
 import BrandedText from "@/components/BrandedText";
 import logo from "@/assets/img/logo.svg";
+import techstarsLogo from "@/assets/img/techstarslogo.png";
 import mobilefooter from "@/assets/img/mobilefooter.png";
 import { scrollToTop } from "@/utils/slider";
 
@@ -73,7 +75,7 @@ export default {
       scrollToTop(2000);
     }
   },
-  data: () => ({ logo, mobilefooter }),
+  data: () => ({ logo, mobilefooter, techstarsLogo }),
   components: {
     BrandedText
   },
@@ -87,6 +89,12 @@ footer
   background-color: #12140C
   margin-top: 32px
 
+  .techstars
+    width: 80%
+    max-width: 280px
+    min-width: 200px
+    margin-top: 3rem
+    display: block
   .mobile-footer
     width: 100%
     height: auto

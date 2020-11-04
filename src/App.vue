@@ -33,6 +33,9 @@
 .gordita-black {
   font-family: "Gordita Black", sans-serif;
 }
+.gordita-bold {
+  font-family: "Gordita Bold", sans-serif;
+}
 .gordita-regular {
   font-family: "Gordita Regular", sans-serif;
 }
