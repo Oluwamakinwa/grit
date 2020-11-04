@@ -21,19 +21,19 @@ import TheThirdSection from "./sections/TheThirdSection.vue";
 import TheFourthSection from "./sections/TheFourthSection.vue";
 import TheFooter from "@/components/TheFooter.vue";
 import TheLoader from "./sections/TheLoader.vue";
-// import axios from "axios";
-import websiteData from "@/static/webdata.const";
+import axios from "axios";
+// import websiteData from "@/static/webdata.const";
 
 export default {
   name: "Home",
-  data: () => ({ websiteData }),
+  data: () => ({ websiteData: {} }),
   created() {
     window.addEventListener("load", function() {
       document.getElementById("loader-div").style.display = "none";
     });
   },
   mounted() {
-    // axios.get("/site_data").then(res => (this.websiteData = res.data));
+    axios.get("/site_data").then(res => (this.websiteData = res.data));
   },
   components: {
     TheNavBar,
