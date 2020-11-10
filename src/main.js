@@ -9,11 +9,13 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faDownload,
   faUpload,
-  faPlus
+  faPlus,
+  faMagic,
+  faSignOutAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-library.add(faDownload, faUpload, faPlus);
+library.add(faDownload, faUpload, faPlus, faMagic, faSignOutAlt);
 
 Vue.component("fai", FontAwesomeIcon);
 

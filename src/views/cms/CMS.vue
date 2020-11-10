@@ -1,21 +1,23 @@
 <template>
   <div class="cms-content">
-    <Header />
-    <HeroSection @updated="updateWebsiteData" :website-data="websiteData" />
-    <FirstSection @updated="updateWebsiteData" :website-data="websiteData" />
-    <SecondSection @updated="updateWebsiteData" :website-data="websiteData" />
-    <ThirdSection @updated="updateWebsiteData" :website-data="websiteData" />
-    <FourthSection @updated="updateWebsiteData" :website-data="websiteData" />
-    <TeamSection @updated="updateWebsiteData" :website-data="websiteData" />
-    <FooterSection @updated="updateWebsiteData" :website-data="websiteData" />
+    <Header logged-in />
+    <div v-if="initialized">
+      <HeroSection @updated="updateWebsiteData" :website-data="websiteData" />
+      <FirstSection @updated="updateWebsiteData" :website-data="websiteData" />
+      <SecondSection @updated="updateWebsiteData" :website-data="websiteData" />
+      <ThirdSection @updated="updateWebsiteData" :website-data="websiteData" />
+      <FourthSection @updated="updateWebsiteData" :website-data="websiteData" />
+      <TeamSection @updated="updateWebsiteData" :website-data="websiteData" />
+      <FooterSection @updated="updateWebsiteData" :website-data="websiteData" />
+    </div>
   </div>
 </template>
 
 <script>
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
-// import axios from "axios";
-import websiteData from "@/static/webdata.const";
+import axios from "axios";
+// import websiteData from "@/static/webdata.const";
 import FirstSection from "@/views/cms/components/FirstSection";
 import SecondSection from "@/views/cms/components/SecondSection";
 import ThirdSection from "@/views/cms/components/ThirdSection";
@@ -24,14 +26,20 @@ import TeamSection from "@/views/cms/components/TeamSection";
 import FooterSection from "@/views/cms/components/FooterSection";
 export default {
   name: "CMS",
-  data: () => ({ websiteData }),
+  data: () => ({ websiteData: {}, initialized: false }),
   mounted: function() {
     // axios.get("/site_data").then(res => (this.websiteData = res.data));
-    // this.updateWebsiteData();
+    this.updateWebsiteData();
   },
   methods: {
     updateWebsiteData: function() {
-      // axios.get("/site_data").then(res => (this.websiteData = res.data));
+      alert("I uploaded the site data");
+
+      axios.get("/site_data").then(res => {
+        this.websiteData = res.data;
+        this.initialized = true;
+        console.log(this.websiteData);
+      });
     }
   },
   components: {

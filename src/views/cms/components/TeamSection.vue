@@ -13,6 +13,13 @@
           :key="`teamMember-${index}-${i}`"
         >
           <div class="form-section">
+            <label>Team Member {{ 3 * index + (i + 1) }} Picture</label>
+            <TeamImageInput
+              @invalid-image-type="showErrorAlert"
+              @image-changed="imageChanged"
+              :index="3 * index + i"
+              :team-member="sectionData.team[3 * index + i]"
+            />
             <label>Team Member {{ 3 * index + (i + 1) }} Name</label>
             <input v-model="sectionData.team[3 * index + i].name" />
           </div>
@@ -43,9 +50,13 @@
           <fai icon="plus" />
           Add New Team Member
         </button>
-        <button @click.prevent="updateSection" class="mt-5 ml-1">
+        <button @click.prevent="updateSection(false)" class="mt-5 ml-1">
           <fai icon="upload" />
           Update Team Section's Content
+        </button>
+        <button @click.prevent="updateSection(true)" class="mt-5 ml-1">
+          <fai icon="magic" />
+          Preview Changes to Team Section
         </button>
       </b-row>
     </form>
@@ -56,10 +67,13 @@
 <script>
 import mixin from "../mixins/network_update_content";
 import EmailAlert from "@/views/home/components/EmailAlert";
+import TeamImageInput from "@/components/TeamImageInput";
+import axios from "axios";
+
 export default {
   name: "TeamSection",
   mixins: [mixin],
-  components: { EmailAlert },
+  components: { TeamImageInput, EmailAlert },
   data: () => ({
     showAlert: false,
     type: "success",
@@ -96,21 +110,62 @@ export default {
         return valid;
       }
     },
-    updateSection: function() {
-      let currentData = this.websiteData;
+    updateSection: async function(update = false) {
+      let currentData = await this.getWebsiteData(this.websiteData, update);
       let team = this.sectionData.team.filter(
         teamMember =>
           teamMember.name !== "" && this.validRoles(teamMember.roles)
       );
-      team = team.map(teamMember => {
-        teamMember.roles = teamMember.roles.filter(role => role.text !== "");
-        return teamMember;
-      });
-      currentData.fourthSection.team = team;
-      this.updateContent(
-        currentData,
-        "Team Section Content Updated Successfully"
+      team = await Promise.all(
+        team.map(async teamMember => {
+          teamMember.roles = teamMember.roles.filter(role => role.text !== "");
+          if (teamMember.updatedImage) {
+            let data = new FormData();
+            data.append(
+              "upload_preset",
+              process.env.VUE_APP_CLOUDINARY_UNSIGNED_PRESET
+            );
+            data.append("file", teamMember.updatedImage);
+            let res = await axios.post(
+              process.env.VUE_APP_CLOUDINARY_URL,
+              data,
+              {
+                headers: {
+                  "Content-Type": "multipart/form-data"
+                }
+              }
+            );
+            let { secure_url } = res.data;
+            teamMember.image = secure_url;
+            delete teamMember.updatedImage;
+            console.log(res.data);
+          } else {
+            if (!teamMember.image)
+              teamMember.image =
+                "https://res.cloudinary.com/hotel-finder/image/upload/v1604964056/avatar_temara.png";
+          }
+          return teamMember;
+        })
       );
+      currentData.fourthSection.team = team;
+      if (update)
+        this.previewContent(currentData, "Your changes will be previewed");
+      else
+        this.updateContent(
+          currentData,
+          "Team Section Content Updated Successfully",
+          () => (this.sectionData.team = team)
+        );
+    },
+    showErrorAlert: function() {
+      this.content =
+        "Please upload either jpeg, jpg or png. Other file types are not allowed";
+      this.type = "error";
+      this.showAlert = true;
+      setTimeout(() => (this.showAlert = false), 3000);
+    },
+    imageChanged: function(data) {
+      this.sectionData.team[data.index].updatedImage = data.file;
     }
   },
   computed: {
@@ -134,4 +189,4 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style lang="sass" scoped></style>

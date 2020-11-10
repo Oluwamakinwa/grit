@@ -46,7 +46,7 @@ export default {
         })
         .then(() => {
           this.email = "";
-          this.content = "Email added successfully";
+          this.content = this.websiteData.emailSuccessAlert;
           this.type = "success";
           this.showAlert = true;
           setTimeout(() => (this.showAlert = false), 3000);

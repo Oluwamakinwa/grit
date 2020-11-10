@@ -30,9 +30,13 @@
           </div>
         </b-col>
       </b-row>
-      <button @click.prevent="updateSection" class="mt-5">
+      <button @click.prevent="updateSection(false)" class="mt-5">
         <fai icon="upload" />
         Update Fourth Section's Content
+      </button>
+      <button @click.prevent="updateSection(true)" class="mt-5 ml-1">
+        <fai icon="magic" />
+        Preview Changes to Fourth Section
       </button>
     </form>
     <EmailAlert v-if="showAlert" :type="type" :content="content" />
@@ -58,12 +62,14 @@ export default {
     }
   }),
   methods: {
-    updateSection() {
-      let currentData = this.websiteData;
+    updateSection: async function(update = false) {
+      let currentData = await this.getWebsiteData(this.websiteData, update);
       currentData.fourthSection = this.sectionData;
       console.log(currentData);
-      this.updateContent(currentData, "Fourth Section Updated Successfully");
-      return;
+      if (update)
+        this.previewContent(currentData, "Your changes will be previewed");
+      else
+        this.updateContent(currentData, "Fourth Section Updated Successfully");
     }
   },
   mounted() {

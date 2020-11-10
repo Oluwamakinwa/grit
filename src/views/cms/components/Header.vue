@@ -1,17 +1,32 @@
 <template>
   <header class="cms-header">
     <img :src="logo" />
-    <a href="/email_as_csv" class="gordita-medium"
+    <a href="/emails_as_csv" class="gordita-medium"
       ><fai icon="download" /> Click to Download Emails as CSV</a
     >
+    <p class="gordita-medium" @click.prevent="logOut" v-if="loggedIn">
+      <fai icon="sign-out-alt" /> Log out
+    </p>
   </header>
 </template>
 
 <script>
 import logo from "@/assets/img/logo.svg";
+import axios from "axios";
 export default {
   name: "Header",
-  data: () => ({ logo })
+  data: () => ({ logo }),
+  props: {
+    loggedIn: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    logOut: function() {
+      axios.get("/logout").then(() => this.$router.push("/login"));
+    }
+  }
 };
 </script>
 
@@ -23,8 +38,10 @@ export default {
   background: #0B0C07
   height: 70px
   align-items: center
-  a
+  a, p
     text-decoration: none
     font-size: .9rem
     color: white
+    margin-bottom: 0
+    cursor: pointer
 </style>
