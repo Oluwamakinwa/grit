@@ -33,12 +33,9 @@ export default {
   },
   methods: {
     updateWebsiteData: function() {
-      alert("I uploaded the site data");
-
       axios.get("/site_data").then(res => {
         this.websiteData = res.data;
         this.initialized = true;
-        console.log(this.websiteData);
       });
     }
   },
