@@ -30,9 +30,13 @@
           </div>
         </b-col>
       </b-row>
-      <button @click.prevent="updateSection" class="mt-5 ml-1">
+      <button @click.prevent="updateSection(false)" class="mt-5 ml-1">
         <fai icon="upload" />
         Update Footer Section's Content
+      </button>
+      <button @click.prevent="updateSection(true)" class="mt-5 ml-1">
+        <fai icon="magic" />
+        Preview Changes to Footer Section
       </button>
     </form>
     <EmailAlert v-if="showAlert" :type="type" :content="content" />
@@ -63,12 +67,14 @@ export default {
     });
   },
   methods: {
-    updateSection() {
-      let currentData = this.websiteData;
-      currentData.fourthSection = this.sectionData;
+    updateSection: async function(update = false) {
+      let currentData = await this.getWebsiteData(this.websiteData, update);
+      currentData.footer = this.sectionData;
       console.log(currentData);
-      this.updateContent(currentData, "Footer Section Updated Successfully");
-      return;
+      if (update)
+        this.previewContent(currentData, "Your changes will be previewed");
+      else
+        this.updateContent(currentData, "Footer Section Updated Successfully");
     }
   },
   props: {

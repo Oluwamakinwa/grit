@@ -36,9 +36,13 @@
           </div>
         </b-col>
       </b-row>
-      <button @click.prevent="updateSection" class="mt-5">
+      <button @click.prevent="updateSection(false)" class="mt-5">
         <fai icon="upload" />
         Update Hero Section's Content
+      </button>
+      <button @click.prevent="updateSection(true)" class="mt-5 ml-1">
+        <fai icon="magic" />
+        Preview Changes to Hero Section
       </button>
     </form>
     <EmailAlert v-if="showAlert" :type="type" :content="content" />
@@ -73,13 +77,15 @@ export default {
     });
   },
   methods: {
-    updateSection() {
-      let currentData = this.websiteData;
+    updateSection: async function(update = false) {
+      let currentData = await this.getWebsiteData(this.websiteData, update);
+      console.log(currentData);
       currentData.emailSuccessAlert = this.emailSuccessAlert;
       currentData.hero = this.hero;
-      console.log(currentData);
-      this.updateContent(currentData, "Hero Section Updated Successfully");
-      return;
+      console.log(update);
+      if (update)
+        this.previewContent(currentData, "Your changes will be previewed");
+      else this.updateContent(currentData, "Hero Section Updated Successfully");
     }
   },
   props: {

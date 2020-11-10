@@ -1,7 +1,9 @@
 <template>
   <transition name="fade">
-    <div :class="{ [type]: type }" class="grit-alert">
-      {{ content ? content : this.$slots.default }}
+    <div class="email-alert-wrapper">
+      <div :class="{ [type]: type }" class="grit-alert">
+        {{ content ? content : this.$slots.default }}
+      </div>
     </div>
   </transition>
 </template>
@@ -21,14 +23,20 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.email-alert-wrapper
+  width: 100%
+  display: flex
+  justify-content: center
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 10000
 .grit-alert
   background: #1e1f16
-  position: fixed
   border-radius: 6px
   display: flex
   min-width: 280px
-  top: 0
-  left: calc(50% - 140px)
+  max-width: 98vw
   &.fade-enter-active, &.fade-leave-active
     transition: opacity .5s
   &.fade-enter, &.fade-leave-to
