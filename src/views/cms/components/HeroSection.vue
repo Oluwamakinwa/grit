@@ -79,10 +79,8 @@ export default {
   methods: {
     updateSection: async function(update = false) {
       let currentData = await this.getWebsiteData(this.websiteData, update);
-      console.log(currentData);
       currentData.emailSuccessAlert = this.emailSuccessAlert;
       currentData.hero = this.hero;
-      console.log(update);
       if (update)
         this.previewContent(currentData, "Your changes will be previewed");
       else this.updateContent(currentData, "Hero Section Updated Successfully");

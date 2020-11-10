@@ -70,7 +70,6 @@ export default {
     updateSection: async function(update = false) {
       let currentData = await this.getWebsiteData(this.websiteData, update);
       currentData.footer = this.sectionData;
-      console.log(currentData);
       if (update)
         this.previewContent(currentData, "Your changes will be previewed");
       else

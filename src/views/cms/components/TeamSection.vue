@@ -138,7 +138,6 @@ export default {
             let { secure_url } = res.data;
             teamMember.image = secure_url;
             delete teamMember.updatedImage;
-            console.log(res.data);
           } else {
             if (!teamMember.image)
               teamMember.image =
