@@ -28,7 +28,7 @@ mongoose.connect(process.env.MONGO_DB_CONNECTION, {
 });
 
 app.get("/initialize", initialize);
-app.get("/site_data", auth_middleware, site_data);
+app.get("/site_data", site_data);
 app.post("/add_email", add_email);
 app.get("/emails_as_csv", emails_as_csv);
 app.post("/update_content", auth_middleware, update_content);
