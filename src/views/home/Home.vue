@@ -1,13 +1,15 @@
 <template>
   <div class="home">
-    <TheNavBar />
-    <TheHeaderSection :website-data="websiteData" />
-    <TheFirstSection :website-data="websiteData" />
-    <TheSecondSection :website-data="websiteData" />
-    <TheThirdSection :website-data="websiteData" />
-    <TheFourthSection :website-data="websiteData" />
-    <TheFooter :website-data="websiteData" />
-    <TheLoader />
+    <div v-if="initialized">
+      <TheNavBar />
+      <TheHeaderSection :website-data="websiteData" />
+      <TheFirstSection :website-data="websiteData" />
+      <TheSecondSection :website-data="websiteData" />
+      <TheThirdSection :website-data="websiteData" />
+      <TheFourthSection :website-data="websiteData" />
+      <TheFooter :website-data="websiteData" />
+    </div>
+    <TheLoader v-else />
   </div>
 </template>
 
@@ -26,14 +28,12 @@ import axios from "axios";
 
 export default {
   name: "Home",
-  data: () => ({ websiteData: {} }),
-  created() {
-    window.addEventListener("load", function() {
-      document.getElementById("loader-div").style.display = "none";
-    });
-  },
+  data: () => ({ websiteData: {}, initialized: false }),
   mounted() {
-    axios.get("/site_data").then(res => (this.websiteData = res.data));
+    axios.get("/site_data").then(res => {
+      this.websiteData = res.data;
+      this.initialized = true;
+    });
   },
   components: {
     TheNavBar,
