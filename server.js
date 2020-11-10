@@ -30,7 +30,7 @@ mongoose.connect(process.env.MONGO_DB_CONNECTION, {
 app.get("/initialize", initialize);
 app.get("/site_data", site_data);
 app.post("/add_email", add_email);
-app.get("/emails_as_csv", emails_as_csv);
+app.get("/emails_as_csv", auth_middleware, emails_as_csv);
 app.post("/update_content", auth_middleware, update_content);
 app.get("/preview_data", auth_middleware, preview_data);
 app.post("/set_preview", auth_middleware, set_preview);

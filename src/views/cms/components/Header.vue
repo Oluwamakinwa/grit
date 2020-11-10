@@ -1,7 +1,7 @@
 <template>
   <header class="cms-header">
     <img :src="logo" />
-    <a href="/emails_as_csv" class="gordita-medium"
+    <a v-if="loggedIn" href="/emails_as_csv" class="gordita-medium"
       ><fai icon="download" /> Click to Download Emails as CSV</a
     >
     <p class="gordita-medium" @click.prevent="logOut" v-if="loggedIn">
