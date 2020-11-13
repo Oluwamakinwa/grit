@@ -1,8 +1,8 @@
-const Site = require("../models/Site");
+const Preview = require("../../models/Preview");
 module.exports = (req, res) => {
   const { websiteData } = req.body;
   console.log(websiteData);
-  Site.create(
+  Preview.create(
     {
       ...websiteData
     },

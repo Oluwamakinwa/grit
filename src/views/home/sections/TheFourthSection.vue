@@ -55,16 +55,23 @@
         </b-col>
       </b-row>
     </b-container>
+    <div class="btn-container">
+      <router-link to="/learn" class="prequalification-action gordita-medium">
+        Learn More
+        <img :src="iconLeft" alt="See if you qualify" />
+      </router-link>
+    </div>
   </div>
 </template>
 <script>
 import BrandedText from "@/components/BrandedText";
 import TeamPerson from "../components/TeamPerson";
 import team from "@/static/team";
+import iconLeft from "../../../assets/img/icons/button_left.svg";
 
 export default {
   name: "TheFourthSection",
-  data: () => ({ team }),
+  data: () => ({ team, iconLeft }),
   props: {
     websiteData: Object
   },
@@ -90,6 +97,30 @@ export default {
 };
 </script>
 <style lang="sass" scoped>
+.btn-container
+  display: flex
+  justify-content: center
+.prequalification-action
+  background: #12140C
+  color: white
+  border: none
+  font-size: 16px
+  padding: 8px 16px
+  text-decoration: none
+
+  img
+    margin-left: 1rem
+
+  #gritThumbsUp
+    position: absolute
+    top: -25%
+    right: 0
+    height: 125%
+    z-index: 5
+
+.the-fifth-section
+  padding-bottom: 40px
+
 .sub
   font-size: 37px
 
@@ -113,8 +144,10 @@ export default {
       height: 1px
       top: calc(100% + 80px)
       display: block
+
   &.last-row
     margin-bottom: 80px
+
 .contact-medium-row
   margin-bottom: 130px
   @media only screen and (min-width: 901px)

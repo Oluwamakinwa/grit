@@ -4,6 +4,7 @@ import Home from "../views/home/Home.vue";
 import CMS from "../views/cms/CMS.vue";
 import PreviewHome from "../views/home/PreviewHome.vue";
 import CMSLogin from "../views/cms/CMSLogin.vue";
+import Learn from "../views/learn/Learn";
 import axios from "axios";
 
 Vue.use(VueRouter);
@@ -39,20 +40,19 @@ const routes = [
     }
   },
   {
-    path: "/about",
-    name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    path: "/learn",
+    name: "Learn",
+    component: Learn
   }
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  }
 });
 
 router.beforeEach((to, from, next) => {

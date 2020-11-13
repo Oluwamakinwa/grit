@@ -50,7 +50,7 @@
                   <a href="#">Privacy policy</a>
                 </li>
                 <li>
-                  <a @click="backtotop" href="#">Back to top</a>
+                  <a @click="backToTop" href="#">Back to top</a>
                 </li>
               </ul>
             </b-col>
@@ -70,7 +70,7 @@ import { scrollToTop } from "@/utils/slider";
 export default {
   name: "TheFooter",
   methods: {
-    backtotop: function(e) {
+    backToTop: function(e) {
       e.preventDefault();
       scrollToTop(2000);
     }
@@ -87,7 +87,6 @@ export default {
 <style lang="sass" scoped>
 footer
   background-color: #12140C
-  margin-top: 32px
 
   .techstars
     width: 80%

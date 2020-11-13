@@ -1,4 +1,4 @@
-const Email = require("../models/Email");
+const Email = require("../../models/Email");
 const EmailValidator = require("commons-validator-js").EmailValidator;
 const validator = new EmailValidator();
 module.exports = (req, res) => {

@@ -1,5 +1,9 @@
 <template>
-  <div :class="{ dark, small }" class="branded-text">
+  <div
+    :class="{ dark, small, shadowColor }"
+    :style="cssVars"
+    class="branded-text"
+  >
     <h2 :class="{ small }">
       <slot></slot>
     </h2>
@@ -11,6 +15,14 @@
 <script>
 export default {
   name: "BrandedText",
+  computed: {
+    cssVars() {
+      return {
+        /* variables you want to pass to css */
+        "--shadowcolor": this.shadowColor
+      };
+    }
+  },
   props: {
     dark: {
       type: Boolean,
@@ -19,6 +31,9 @@ export default {
     small: {
       type: Boolean,
       default: false
+    },
+    shadowColor: {
+      type: String
     }
   }
 };
@@ -101,4 +116,8 @@ export default {
       color: white
       background-color: transparent
       text-shadow: -1px -1px 0 #0b0c0750, 1px -1px 0 #0b0c0750, -1px 1px 0 #0b0c0750, 1px 1px 0 #0b0c0750
+
+  &.shadowColor
+    .brand-shadow
+      color: var(--shadowcolor)
 </style>

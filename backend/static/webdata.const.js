@@ -126,7 +126,7 @@ module.exports = {
   footer: {
     mainText: "Before we launch",
     surveyText:
-      "If you haven't already, take a few minutes to complete our survey or share this page with anyone who you think may be interested in Grit. Thanks!",
+      "If you haven't already, take a few minutes to complete our learn or share this page with anyone who you think may be interested in Grit. Thanks!",
     address: "Techstars Colorado, USA",
     copyrightText: "Copyright © 2020 Grit"
   }
