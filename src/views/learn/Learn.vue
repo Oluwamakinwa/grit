@@ -43,4 +43,6 @@ p.survey-leading-to
   font-size: 16px
   margin-bottom: 3rem
   line-height: 40px
+.survey
+  overflow-x: hidden
 </style>
