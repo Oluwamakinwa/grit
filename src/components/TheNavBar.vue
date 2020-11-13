@@ -9,9 +9,9 @@
             </router-link>
 
             <div class="right">
+              <router-link to="/learn">learn</router-link>
               <a href="#">features</a>
               <a href="#">partners</a>
-              <router-link to="/learn">learn</router-link>
             </div>
             <div class="menu" @click="toggleShow" v-show="!show">
               <div class="bars">
@@ -26,9 +26,9 @@
       <div class="divider"></div>
     </b-container>
     <div v-show="show" class="right-way">
+      <router-link to="/learn">learn</router-link>
       <a href="#">features</a>
       <a href="#">partners</a>
-      <router-link to="/learn">about us</router-link>
       <button @click="toggleShow">&times;</button>
     </div>
   </div>
