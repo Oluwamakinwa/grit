@@ -5,7 +5,7 @@
     <TheMotivationSection />
     <TheBlackFamilyWorthSection />
     <TheWeUnderstandSection />
-    <ProgramsSection />
+    <!--    <ProgramsSection />-->
     <GPTSection />
     <TheFooter :website-data="websiteData" />
   </div>
@@ -17,7 +17,7 @@ import TheHeaderSection from "./sections/TheHeaderSection";
 import TheMotivationSection from "@/views/learn/sections/TheMotivationSection";
 import TheBlackFamilyWorthSection from "@/views/learn/sections/TheBlackFamilyWorthSection";
 import TheWeUnderstandSection from "@/views/learn/sections/TheWeUnderstandSection";
-import ProgramsSection from "@/views/learn/sections/ProgramsSection";
+// import ProgramsSection from "@/views/learn/sections/ProgramsSection";
 import GPTSection from "@/views/learn/sections/GPTSection";
 import websiteData from "@/static/webdata.const";
 import TheFooter from "@/components/TheFooter";
@@ -28,7 +28,7 @@ export default {
   components: {
     TheFooter,
     GPTSection,
-    ProgramsSection,
+    // ProgramsSection,
     TheWeUnderstandSection,
     TheBlackFamilyWorthSection,
     TheMotivationSection,
