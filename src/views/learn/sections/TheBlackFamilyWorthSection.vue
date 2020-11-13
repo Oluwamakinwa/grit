@@ -116,6 +116,6 @@ export default {
         height: 40%
         background: linear-gradient(0deg, #1A1C11 43.06%, rgba(11, 12, 7, 0.0001) 100%)
         left: 0
-        bottom: 0
+        bottom: -10px
         z-index: 6
 </style>

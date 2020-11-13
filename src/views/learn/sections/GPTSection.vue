@@ -61,8 +61,9 @@ export default {
   @media only screen and (min-width: 768px)
     #gritThumbsUpCropped
       display: none
-      width: 100%
   @media only screen and (max-width: 768px)
     #gritThumbsUp
       display: none
+    #gritThumbsUpCropped
+      width: 100%
 </style>
