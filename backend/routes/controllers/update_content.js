@@ -1,9 +1,10 @@
-const Site = require("../models/Site");
-const webData = require("../static/webdata.const");
+const Site = require("../../models/Site");
 module.exports = (req, res) => {
+  const { websiteData } = req.body;
+  console.log(websiteData);
   Site.create(
     {
-      ...webData
+      ...websiteData
     },
     (error, siteData) => {
       if (error) res.json(error);

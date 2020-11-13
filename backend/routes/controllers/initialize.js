@@ -1,10 +1,9 @@
-const Preview = require("../models/Preview");
+const Site = require("../../models/Site");
+const webData = require("../../static/webdata.const");
 module.exports = (req, res) => {
-  const { websiteData } = req.body;
-  console.log(websiteData);
-  Preview.create(
+  Site.create(
     {
-      ...websiteData
+      ...webData
     },
     (error, siteData) => {
       if (error) res.json(error);

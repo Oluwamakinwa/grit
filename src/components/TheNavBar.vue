@@ -1,5 +1,5 @@
 <template>
-  <div class="nav-bar">
+  <div class="nav-bar" :class="{ light }">
     <b-container>
       <b-row>
         <b-col>
@@ -11,7 +11,7 @@
               <a href="#">partners</a>
               <a href="#">about us</a>
             </div>
-            <div class="menu" @click="toggleshow" v-show="!show">
+            <div class="menu" @click="toggleShow" v-show="!show">
               <div class="bars">
                 <div></div>
                 <div></div>
@@ -27,21 +27,31 @@
       <a href="#">features</a>
       <a href="#">partners</a>
       <a href="#">about us</a>
-      <button @click="toggleshow">&times;</button>
+      <button @click="toggleShow">&times;</button>
     </div>
   </div>
 </template>
 <script>
 import logo from "@/assets/img/logo.svg";
+import logoDark from "../assets/img/logo_dark.svg";
 export default {
   name: "TheNavBar",
   data: () => ({
     logo,
     show: false
   }),
+  mounted() {
+    this.logo = this.light ? logoDark : logo;
+  },
   methods: {
-    toggleshow: function() {
+    toggleShow: function() {
       this.show = !this.show;
+    }
+  },
+  props: {
+    light: {
+      type: Boolean,
+      default: false
     }
   }
 };
@@ -54,6 +64,13 @@ export default {
   color: white
   padding: 20px
   position: relative
+  &.light
+    background: white
+    color: #0B0C07
+    .nav-content
+      .right
+        a
+          color: #0B0C07
   .divider
     width: 100%
     height: 1px

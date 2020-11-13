@@ -1,4 +1,4 @@
-const Password = require("../models/Password");
+const Password = require("../../models/Password");
 const bcrypt = require("bcryptjs");
 const sanitize = require("mongo-sanitize");
 module.exports = (req, res) => {

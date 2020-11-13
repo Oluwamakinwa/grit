@@ -1,4 +1,4 @@
-const Email = require("../models/Email");
+const Email = require("../../models/Email");
 const Parser = require("json2csv").Parser;
 
 module.exports = (req, res) => {
