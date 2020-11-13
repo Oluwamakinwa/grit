@@ -8,7 +8,9 @@
     <b-container>
       <b-row>
         <b-col>
-          <BrandedText shadow-color="#EFEFEF" dark>Meet our GPT</BrandedText>
+          <BrandedText shadow-color="#EFEFEF" small dark
+            >Meet our GPT</BrandedText
+          >
           <p class="leading-to gordita-light mt-4 mb-5">
             Grit Pre-Qualification Tool
           </p>

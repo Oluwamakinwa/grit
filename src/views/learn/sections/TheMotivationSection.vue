@@ -3,6 +3,7 @@
     <b-container>
       <b-row>
         <b-col>
+          <p class="leading-to gordita-light">This is</p>
           <BrandedText small dark>our motivation</BrandedText>
           <p class="survey-leading-to gordita-regular mt-5">
             Grit was formed to foster economic mobility for Black, Indigenous
@@ -30,6 +31,9 @@ export default {
 <style lang="sass" scoped>
 .the-motivation-section
   padding: 150px 0 50px
+
+  @media only screen and (max-width: 767px)
+    padding: 80px 0 50px
 
   p
     max-width: 680px

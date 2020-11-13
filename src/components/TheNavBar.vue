@@ -4,12 +4,14 @@
       <b-row>
         <b-col>
           <div class="nav-content">
-            <img :src="logo" alt="Grit" />
+            <router-link to="/">
+              <img :src="logo" alt="Grit" />
+            </router-link>
 
             <div class="right">
               <a href="#">features</a>
               <a href="#">partners</a>
-              <a href="#">about us</a>
+              <router-link to="/learn">learn</router-link>
             </div>
             <div class="menu" @click="toggleShow" v-show="!show">
               <div class="bars">
@@ -26,7 +28,7 @@
     <div v-show="show" class="right-way">
       <a href="#">features</a>
       <a href="#">partners</a>
-      <a href="#">about us</a>
+      <router-link to="/learn">about us</router-link>
       <button @click="toggleShow">&times;</button>
     </div>
   </div>
@@ -80,6 +82,9 @@ export default {
       .right
         a
           color: #0B0C07
+          &::after
+            color: #0B0C07
+            background-color: #0B0C07
   .divider
     width: 100%
     height: 1px
