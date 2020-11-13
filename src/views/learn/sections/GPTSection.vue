@@ -1,5 +1,10 @@
 <template>
   <section class="gpt-section pt-5">
+    <img
+      id="gritThumbsUpCropped"
+      :src="gptThumbsUpCropped"
+      alt="Grit Pre-Qualification Tool"
+    />
     <b-container>
       <b-row>
         <b-col>
@@ -23,12 +28,13 @@
 
 <script>
 import BrandedText from "@/components/BrandedText";
-import iconLeft from "../../../assets/img/icons/button_left.svg";
-import gptThumbsUp from "../../../assets/img/gpt_thumbsup.png";
+import iconLeft from "@/assets/img/icons/button_left.svg";
+import gptThumbsUp from "@/assets/img/gpt_thumbsup.png";
+import gptThumbsUpCropped from "@/assets/img/gpt_thumbsup_cropped.png";
 
 export default {
   name: "GPTSection",
-  data: () => ({ iconLeft, gptThumbsUp }),
+  data: () => ({ iconLeft, gptThumbsUpCropped, gptThumbsUp }),
   components: { BrandedText }
 };
 </script>
@@ -52,4 +58,11 @@ export default {
     right: 0
     height: 125%
     z-index: 5
+  @media only screen and (min-width: 768px)
+    #gritThumbsUpCropped
+      display: none
+      width: 100%
+  @media only screen and (max-width: 768px)
+    #gritThumbsUp
+      display: none
 </style>

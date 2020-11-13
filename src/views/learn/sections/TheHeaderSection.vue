@@ -22,7 +22,7 @@
 
 <script>
 import BrandedText from "@/components/BrandedText";
-import surveyHero from "../../../assets/img/surveyheader.png";
+import surveyHero from "@/assets/img/surveyheader.png";
 export default {
   name: "TheHeaderSection",
   data: () => ({ surveyHero }),
@@ -47,5 +47,5 @@ export default {
     left: 0
     bottom: 0
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.0001) 0%, #FFFFFF 100%)
-    height: 300px
+    height: 10%
 </style>

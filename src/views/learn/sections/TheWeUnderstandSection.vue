@@ -8,7 +8,7 @@
             careers can be a daunting prospect, especially if taking on debt is
             required.
           </p>
-          <BrandedText dark>we understand,</BrandedText>
+          <BrandedText small dark>we understand,</BrandedText>
           <p class="leading-to gordita-light">and we're here to help.</p>
         </b-col>
       </b-row>
