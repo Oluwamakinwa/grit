@@ -4,7 +4,7 @@
       <b-row>
         <b-col>
           <div class="nav-content">
-            <img :src="logo" />
+            <img :src="logo" alt="Grit" />
 
             <div class="right">
               <a href="#">features</a>
@@ -67,6 +67,15 @@ export default {
   &.light
     background: white
     color: #0B0C07
+    .right-way
+      @media only screen and (max-width: 767px)
+        border-top: 1px solid #0B0C07
+        background: white
+        button, a
+          color: #0B0C07
+    .menu
+      .bars div
+        background: #0B0C07
     .nav-content
       .right
         a

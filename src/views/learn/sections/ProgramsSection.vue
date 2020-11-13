@@ -42,7 +42,7 @@
 <script>
 import ProgramComponent from "@/views/learn/components/ProgramComponent";
 import array_helpers from "@/mixins/array_helpers";
-import programs from "../../../static/programs";
+import programs from "@/static/programs";
 
 export default {
   name: "ProgramsSection",
@@ -65,4 +65,8 @@ export default {
         content: '●'
         display: inline-block
         margin-right: 18px
+  @media screen and (max-width: 767px)
+    .program-gpt-section
+      margin-bottom: 0 !important
+      padding-bottom: 0 !important
 </style>

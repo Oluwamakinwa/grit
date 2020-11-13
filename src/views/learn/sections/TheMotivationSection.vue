@@ -3,7 +3,7 @@
     <b-container>
       <b-row>
         <b-col>
-          <BrandedText dark>our motivation</BrandedText>
+          <BrandedText small dark>our motivation</BrandedText>
           <p class="survey-leading-to gordita-regular mt-5">
             Grit was formed to foster economic mobility for Black, Indigenous
             POC communities who are disproportionately impacted by systemic bias
@@ -18,7 +18,7 @@
 
 <script>
 import BrandedText from "@/components/BrandedText";
-import financialInclusion from "../../../assets/img/financial_inclusion.png";
+import financialInclusion from "@/assets/img/financial_inclusion.png";
 
 export default {
   name: "TheMotivationSection",
