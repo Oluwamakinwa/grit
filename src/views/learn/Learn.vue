@@ -7,6 +7,7 @@
     <TheWeUnderstandSection />
     <ProgramsSection />
     <GPTSection />
+    <!--    <InterviewEmbed />-->
     <TheFooter :website-data="websiteData" />
   </div>
 </template>
@@ -21,11 +22,13 @@ import ProgramsSection from "@/views/learn/sections/ProgramsSection";
 import GPTSection from "@/views/learn/sections/GPTSection";
 import websiteData from "@/static/webdata.const";
 import TheFooter from "@/components/TheFooter";
+// import InterviewEmbed from "@/views/learn/components/InterviewEmbed";
 
 export default {
   name: "Learn",
   data: () => ({ websiteData }),
   components: {
+    // InterviewEmbed,
     TheFooter,
     GPTSection,
     ProgramsSection,

@@ -14,9 +14,13 @@
           <p class="leading-to gordita-light mt-4 mb-5">
             Grit Pre-Qualification Tool
           </p>
-          <button class="prequalification-action gordita-medium">
+          <a
+            target="_blank"
+            href="http://35.192.31.167/interview?i=docassemble.playground1%3Aproduct-interview.yml#page1"
+            class="prequalification-action gordita-medium"
+          >
             See if you qualify <img :src="iconLeft" alt="See if you qualify" />
-          </button>
+          </a>
         </b-col>
       </b-row>
     </b-container>
@@ -52,6 +56,8 @@ export default {
     border: none
     font-size: 16px
     padding: 8px 16px
+    display: inline-block
+    text-decoration: none
     img
       margin-left: 1rem
   #gritThumbsUp
