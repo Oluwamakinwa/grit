@@ -1,53 +1,22 @@
 <template>
   <div class="cms-content">
-    <Header logged-in />
-    <div v-if="initialized">
-      <HeroSection @updated="updateWebsiteData" :website-data="websiteData" />
-      <FirstSection @updated="updateWebsiteData" :website-data="websiteData" />
-      <SecondSection @updated="updateWebsiteData" :website-data="websiteData" />
-      <ThirdSection @updated="updateWebsiteData" :website-data="websiteData" />
-      <FourthSection @updated="updateWebsiteData" :website-data="websiteData" />
-      <TeamSection @updated="updateWebsiteData" :website-data="websiteData" />
-      <FooterSection @updated="updateWebsiteData" :website-data="websiteData" />
+    <TheHeader logged-in />
+    <div class="content">
+      <TheSideBar />
     </div>
+    <router-view />
   </div>
 </template>
 
 <script>
-import Header from "./components/Header";
-import HeroSection from "./components/HeroSection";
-import axios from "axios";
-// import websiteData from "@/static/webdata.const";
-import FirstSection from "@/views/cms/components/FirstSection";
-import SecondSection from "@/views/cms/components/SecondSection";
-import ThirdSection from "@/views/cms/components/ThirdSection";
-import FourthSection from "@/views/cms/components/FourthSection";
-import TeamSection from "@/views/cms/components/TeamSection";
-import FooterSection from "@/views/cms/components/FooterSection";
+import TheHeader from "@/views/cms/components/TheHeader";
+import TheSideBar from "@/views/cms/components/TheSideBar";
+
 export default {
   name: "CMS",
-  data: () => ({ websiteData: {}, initialized: false }),
-  mounted: function() {
-    // axios.get("/site_data").then(res => (this.websiteData = res.data));
-    this.updateWebsiteData();
-  },
-  methods: {
-    updateWebsiteData: function() {
-      axios.get("/site_data").then(res => {
-        this.websiteData = res.data;
-        this.initialized = true;
-      });
-    }
-  },
   components: {
-    FooterSection,
-    TeamSection,
-    FourthSection,
-    ThirdSection,
-    SecondSection,
-    FirstSection,
-    Header,
-    HeroSection
+    TheHeader,
+    TheSideBar
   }
 };
 </script>

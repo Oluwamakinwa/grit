@@ -1,13 +1,15 @@
 <template>
   <div class="home">
-    <TheNavBar />
-    <TheHeaderSection :website-data="websiteData" />
-    <TheFirstSection :website-data="websiteData" />
-    <TheSecondSection :website-data="websiteData" />
-    <TheThirdSection :website-data="websiteData" />
-    <TheFourthSection :website-data="websiteData" />
-    <TheFooter :website-data="websiteData" />
-    <TheLoader />
+    <div v-if="initialized">
+      <TheNavBar />
+      <TheHeaderSection :website-data="websiteData.homePage" />
+      <TheFirstSection :website-data="websiteData.homePage" />
+      <TheSecondSection :website-data="websiteData.homePage" />
+      <TheThirdSection :website-data="websiteData.homePage" />
+      <TheFourthSection :website-data="websiteData.homePage" />
+      <TheFooter :website-data="websiteData" />
+    </div>
+    <TheLoader v-else />
   </div>
 </template>
 
@@ -23,14 +25,17 @@ import TheLoader from "@/components/TheLoader.vue";
 import axios from "axios";
 export default {
   name: "PreviewHome",
-  data: () => ({ websiteData: {} }),
+  data: () => ({ websiteData: {}, initialized: false }),
   created() {
     window.addEventListener("load", function() {
       document.getElementById("loader-div").style.display = "none";
     });
   },
   mounted() {
-    axios.get("/preview_data").then(res => (this.websiteData = res.data));
+    axios.get("/preview_data").then(res => {
+      this.websiteData = res.data;
+      this.initialized = true;
+    });
   },
   components: {
     TheNavBar,

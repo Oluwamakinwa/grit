@@ -9,12 +9,8 @@ export default {
       websiteData = res.data;
       // } else websiteData = data;
       let currentData = {};
-      currentData.emailSuccessAlert = websiteData.emailSuccessAlert;
-      currentData.hero = websiteData.hero;
-      currentData.firstSection = websiteData.firstSection;
-      currentData.secondSection = websiteData.secondSection;
-      currentData.thirdSection = websiteData.thirdSection;
-      currentData.fourthSection = websiteData.fourthSection;
+      currentData.homePage = websiteData.homePage;
+      currentData.learnPage = websiteData.learnPage;
       currentData.footer = websiteData.footer;
       return currentData;
     },

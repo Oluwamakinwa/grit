@@ -1,48 +1,48 @@
 <template>
   <b-container class="hero-section">
-    <h2 class="gordita-medium">Hero Section Content</h2>
+    <h2 class="gordita-medium">Second Section Content</h2>
     <form>
       <b-row class="mt-5">
-        <b-col md="4">
+        <b-col>
           <div class="form-section">
-            <label>Email Success Notification</label>
-            <textarea v-model="emailSuccessAlert"></textarea>
+            <label>Background Text</label>
+            <textarea v-model="sectionData.backgroundText"></textarea>
           </div>
         </b-col>
-        <b-col md="4">
+        <b-col>
           <div class="form-section">
             <label>Leading to Main Branded Text</label>
-            <textarea v-model="hero.leadingToMainText"></textarea>
+            <textarea v-model="sectionData.leadingToMainText"></textarea>
           </div>
         </b-col>
-        <b-col md="4">
+        <b-col>
           <div class="form-section">
             <label>Main Branded Text</label>
-            <textarea v-model="hero.mainText"></textarea>
+            <textarea v-model="sectionData.mainText"></textarea>
           </div>
         </b-col>
       </b-row>
       <b-row class="mt-5">
-        <b-col md="4">
+        <b-col>
           <div class="form-section">
-            <label>Main Sub Text</label>
-            <textarea v-model="hero.mainSubText"></textarea>
+            <label>Paragraph I</label>
+            <textarea v-model="sectionData.paragraph[0].text"></textarea>
           </div>
         </b-col>
-        <b-col md="4">
+        <b-col>
           <div class="form-section">
-            <label>Email Form Sub Text</label>
-            <textarea v-model="hero.emailFormSubText"></textarea>
+            <label>Paragraph II</label>
+            <textarea v-model="sectionData.paragraph[1].text"></textarea>
           </div>
         </b-col>
       </b-row>
       <button @click.prevent="updateSection(false)" class="mt-5">
         <fai icon="upload" />
-        Update Hero Section's Content
+        Update Second Section's Content
       </button>
       <button @click.prevent="updateSection(true)" class="mt-5 ml-1">
         <fai icon="magic" />
-        Preview Changes to Hero Section
+        Preview Changes to Second Section
       </button>
     </form>
     <EmailAlert v-if="showAlert" :type="type" :content="content" />
@@ -50,41 +50,41 @@
 </template>
 
 <script>
-import mixin from "../mixins/network_update_content";
+import mixin from "@/views/cms/mixins/network_update_content";
 import EmailAlert from "@/views/home/components/EmailAlert";
 export default {
-  name: "HeroSection",
+  name: "SecondSection",
   components: { EmailAlert },
   mixins: [mixin],
   data: () => ({
     showAlert: false,
     type: "success",
     content: "",
-    emailSuccessAlert: "",
-    hero: {
+    sectionData: {
+      backgroundText: "",
       leadingToMainText: "",
       mainText: "",
-      mainSubText: "",
-      emailFormSubText: ""
+      paragraph: Array(2).fill({ text: "" })
     }
   }),
-  mounted() {
-    this.emailSuccessAlert = this.websiteData.emailSuccessAlert;
-    console.log(this.websiteData);
-    console.log(this.websiteData.hero);
-    Object.keys(this.hero).forEach(key => {
-      this.hero[key] = this.websiteData.hero[key];
-    });
-  },
   methods: {
     updateSection: async function(update = false) {
       let currentData = await this.getWebsiteData(this.websiteData, update);
-      currentData.emailSuccessAlert = this.emailSuccessAlert;
-      currentData.hero = this.hero;
+      currentData.homePage.secondSection = this.sectionData;
       if (update)
         this.previewContent(currentData, "Your changes will be previewed");
-      else this.updateContent(currentData, "Hero Section Updated Successfully");
+      else
+        this.updateContent(
+          currentData,
+          "Second Section Content Updated Successfully"
+        );
+      return;
     }
+  },
+  mounted() {
+    Object.keys(this.sectionData).forEach(key => {
+      this.sectionData[key] = this.websiteData.secondSection[key];
+    });
   },
   props: {
     websiteData: Object
@@ -92,4 +92,4 @@ export default {
 };
 </script>
 
-<style lang="sass" scoped></style>
+<style scoped></style>

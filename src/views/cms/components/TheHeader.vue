@@ -14,7 +14,7 @@
 import logo from "@/assets/img/logo.svg";
 import axios from "axios";
 export default {
-  name: "Header",
+  name: "TheHeader",
   data: () => ({ logo }),
   props: {
     loggedIn: {

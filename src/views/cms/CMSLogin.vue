@@ -1,6 +1,6 @@
 <template>
   <div class="cms-login">
-    <Header />
+    <TheHeader />
     <div class="content">
       <b-container>
         <form>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import Header from "@/views/cms/components/Header";
+import TheHeader from "@/views/cms/components/TheHeader";
 import EmailAlert from "@/views/home/components/EmailAlert";
 import axios from "axios";
 export default {
@@ -38,7 +38,7 @@ export default {
     content: "",
     password: ""
   }),
-  components: { Header, EmailAlert },
+  components: { TheHeader, EmailAlert },
   methods: {
     login: function() {
       axios

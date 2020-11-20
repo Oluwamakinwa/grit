@@ -65,7 +65,7 @@
 </template>
 
 <script>
-import mixin from "../mixins/network_update_content";
+import mixin from "@/views/cms/mixins/network_update_content";
 import EmailAlert from "@/views/home/components/EmailAlert";
 import TeamImageInput from "@/components/TeamImageInput";
 import axios from "axios";
@@ -146,7 +146,7 @@ export default {
           return teamMember;
         })
       );
-      currentData.fourthSection.team = team;
+      currentData.homePage.fourthSection.team = team;
       if (update)
         this.previewContent(currentData, "Your changes will be previewed");
       else

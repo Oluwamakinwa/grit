@@ -4,6 +4,7 @@ import Home from "../views/home/Home.vue";
 import CMS from "../views/cms/CMS.vue";
 import PreviewHome from "../views/home/PreviewHome.vue";
 import CMSLogin from "../views/cms/CMSLogin.vue";
+import CMSHome from "@/views/cms/views/home/CMSHome";
 import Learn from "../views/learn/Learn";
 import axios from "axios";
 
@@ -19,6 +20,16 @@ const routes = [
     path: "/cms",
     name: "CMS",
     component: CMS,
+    children: [
+      {
+        path: "/",
+        name: "CMSHome",
+        component: CMSHome,
+        meta: {
+          requiresAuth: true
+        }
+      }
+    ],
     meta: {
       requiresAuth: true
     }
