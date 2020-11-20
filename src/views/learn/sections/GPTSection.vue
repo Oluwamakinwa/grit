@@ -8,18 +8,19 @@
     <b-container>
       <b-row>
         <b-col>
-          <BrandedText shadow-color="#EFEFEF" small dark
-            >Meet our GPT</BrandedText
-          >
+          <BrandedText shadow-color="#EFEFEF" small dark>{{
+            websiteData.gptSection.mainText
+          }}</BrandedText>
           <p class="leading-to gordita-light mt-4 mb-5">
-            Grit Pre-Qualification Tool
+            {{ websiteData.gptSection.subText }}
           </p>
           <a
             target="_blank"
             href="http://35.192.31.167/interview?i=docassemble.playground1%3Aproduct-interview.yml#page1"
             class="prequalification-action gordita-medium"
           >
-            See if you qualify <img :src="iconLeft" alt="See if you qualify" />
+            {{ websiteData.gptSection.actionText }}
+            <img :src="iconLeft" alt="See if you qualify" />
           </a>
         </b-col>
       </b-row>
@@ -41,7 +42,10 @@ import gptThumbsUpCropped from "@/assets/img/gpt_thumbsup_cropped.png";
 export default {
   name: "GPTSection",
   data: () => ({ iconLeft, gptThumbsUpCropped, gptThumbsUp }),
-  components: { BrandedText }
+  components: { BrandedText },
+  props: {
+    websiteData: Object
+  }
 };
 </script>
 

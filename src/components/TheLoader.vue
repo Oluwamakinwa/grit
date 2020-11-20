@@ -1,14 +1,21 @@
 <template>
-  <div id="loader-div">
-    <img :src="logo" />
+  <div :class="{ light }" id="loader-div">
+    <img :src="light ? darkLogo : logo" />
   </div>
 </template>
 
 <script>
 import logo from "@/assets/img/logo.svg";
+import darkLogo from "@/assets/img/logo_dark.svg";
 export default {
   name: "TheLoader",
-  data: () => ({ logo })
+  data: () => ({ logo, darkLogo }),
+  props: {
+    light: {
+      type: Boolean,
+      default: false
+    }
+  }
 };
 </script>
 <style lang="sass" scoped>
@@ -23,6 +30,8 @@ export default {
   display: flex
   justify-content: center
   align-items: center
+  &.light
+    background: white
   img
     animation: float 6s ease-in-out infinite
 @keyframes float

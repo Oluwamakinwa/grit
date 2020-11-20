@@ -2,11 +2,11 @@
   <div class="home">
     <div v-if="initialized">
       <TheNavBar />
-      <TheHeaderSection :website-data="websiteData" />
-      <TheFirstSection :website-data="websiteData" />
-      <TheSecondSection :website-data="websiteData" />
-      <TheThirdSection :website-data="websiteData" />
-      <TheFourthSection :website-data="websiteData" />
+      <TheHeaderSection :website-data="websiteData.homePage" />
+      <TheFirstSection :website-data="websiteData.homePage" />
+      <TheSecondSection :website-data="websiteData.homePage" />
+      <TheThirdSection :website-data="websiteData.homePage" />
+      <TheFourthSection :website-data="websiteData.homePage" />
       <TheFooter :website-data="websiteData" />
     </div>
     <TheLoader v-else />
@@ -22,7 +22,7 @@ import TheSecondSection from "./sections/TheSecondSection.vue";
 import TheThirdSection from "./sections/TheThirdSection.vue";
 import TheFourthSection from "./sections/TheFourthSection.vue";
 import TheFooter from "@/components/TheFooter.vue";
-import TheLoader from "./sections/TheLoader.vue";
+import TheLoader from "@/components/TheLoader.vue";
 import axios from "axios";
 // import websiteData from "@/static/webdata.const";
 

@@ -19,7 +19,7 @@ import TheSecondSection from "./sections/TheSecondSection.vue";
 import TheThirdSection from "./sections/TheThirdSection.vue";
 import TheFourthSection from "./sections/TheFourthSection.vue";
 import TheFooter from "@/components/TheFooter.vue";
-import TheLoader from "./sections/TheLoader.vue";
+import TheLoader from "@/components/TheLoader.vue";
 import axios from "axios";
 export default {
   name: "PreviewHome",

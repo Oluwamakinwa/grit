@@ -4,14 +4,13 @@
       <b-row>
         <b-col>
           <p class="survey-leading-to gordita-regular mt-5">
-            More than 1 million tech jobs paying no less than
+            {{ websiteData.headerSection.leadingToMainText }}
           </p>
-          <BrandedText dark
-            >$60,000 per year go unfilled every year</BrandedText
-          >
+          <BrandedText dark>{{
+            websiteData.headerSection.mainText
+          }}</BrandedText>
           <p class="survey-leading-to gordita-regular mt-5">
-            These roles typically come with full health benefits, paid time off,
-            maternity and paternity leave and much more.
+            {{ websiteData.headerSection.subText }}
           </p>
         </b-col>
       </b-row>
@@ -26,7 +25,10 @@ import surveyHero from "@/assets/img/surveyheader.png";
 export default {
   name: "TheHeaderSection",
   data: () => ({ surveyHero }),
-  components: { BrandedText }
+  components: { BrandedText },
+  props: {
+    websiteData: Object
+  }
 };
 </script>
 
