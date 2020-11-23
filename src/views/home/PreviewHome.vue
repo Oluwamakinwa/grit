@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div v-if="initialized">
+    <div v-if="initialized && loaded">
       <TheNavBar />
       <TheHeaderSection :website-data="websiteData.homePage" />
       <TheFirstSection :website-data="websiteData.homePage" />
@@ -25,10 +25,11 @@ import TheLoader from "@/components/TheLoader.vue";
 import axios from "axios";
 export default {
   name: "PreviewHome",
-  data: () => ({ websiteData: {}, initialized: false }),
+  data: () => ({ websiteData: {}, initialized: false, loaded: false }),
   created() {
     window.addEventListener("load", function() {
-      document.getElementById("loader-div").style.display = "none";
+      this.loaded = true;
+      // document.getElementById("loader-div").style.display = "none";
     });
   },
   mounted() {

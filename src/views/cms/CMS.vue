@@ -3,8 +3,10 @@
     <TheHeader logged-in />
     <div class="content">
       <TheSideBar />
+      <div id="main-content">
+        <router-view />
+      </div>
     </div>
-    <router-view />
   </div>
 </template>
 
@@ -22,9 +24,14 @@ export default {
 </script>
 
 <style lang="sass">
+#main-content
+  margin-left: 200px
 .cms-content
   background: #f5f5f5
   min-height: 100vh
+  .content
+    padding-top: 70px
+    padding-bottom: 70px
   h2
     margin-top: 3rem
   .form-section

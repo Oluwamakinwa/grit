@@ -60,6 +60,8 @@ export default {
 </script>
 
 <style lang="sass" scoped>
+.content
+  margin-top: calc(70px + 3rem)
 .form-section
   label
     display: block

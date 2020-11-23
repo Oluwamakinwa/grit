@@ -36,6 +36,11 @@ export default {
   justify-content: space-between
   padding: 15px 40px
   background: #0B0C07
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  z-index: 90000
   height: 70px
   align-items: center
   a, p

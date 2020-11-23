@@ -34,22 +34,24 @@ export default {
           setTimeout(() => (this.showAlert = false), 3000);
         });
     },
-    previewContent: function(data, mssg, callback = null) {
+    previewContent: function(data, mssg, callback = null, url = null) {
       axios
         .post("/set_preview", {
           websiteData: data
         })
         .then(() => {
+          console.log("I got here");
           this.type = "success";
           this.content = mssg;
           this.showAlert = true;
           if (callback) callback();
           setTimeout(() => {
             this.showAlert = false;
-            window.open("/preview_home");
+            window.open(!url ? "/preview_home" : url);
           }, 1500);
         })
         .catch(err => {
+          console.log("Fuck i'm here");
           this.content = err.response.data.message;
           this.type = "error";
           this.showAlert = true;

@@ -3,8 +3,10 @@ import VueRouter from "vue-router";
 import Home from "../views/home/Home.vue";
 import CMS from "../views/cms/CMS.vue";
 import PreviewHome from "../views/home/PreviewHome.vue";
+import PreviewLearn from "@/views/learn/PreviewLearn.vue";
 import CMSLogin from "../views/cms/CMSLogin.vue";
 import CMSHome from "@/views/cms/views/home/CMSHome";
+import CMSLearn from "@/views/cms/views/learn/CMSLearn";
 import Learn from "../views/learn/Learn";
 import axios from "axios";
 
@@ -22,9 +24,17 @@ const routes = [
     component: CMS,
     children: [
       {
-        path: "/",
+        path: "",
         name: "CMSHome",
         component: CMSHome,
+        meta: {
+          requiresAuth: true
+        }
+      },
+      {
+        path: "learn",
+        name: "CMSLearn",
+        component: CMSLearn,
         meta: {
           requiresAuth: true
         }
@@ -38,6 +48,14 @@ const routes = [
     path: "/preview_home",
     name: "PreviewHome",
     component: PreviewHome,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/preview_learn",
+    name: "PreviewLearn",
+    component: PreviewLearn,
     meta: {
       requiresAuth: true
     }
