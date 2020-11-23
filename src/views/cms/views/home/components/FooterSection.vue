@@ -1,42 +1,42 @@
 <template>
-  <b-container class="hero-section">
-    <h2 class="gordita-medium">First Section Content</h2>
+  <b-container class="team-section">
+    <h2 class="gordita-medium">Footer Section Content</h2>
     <form>
       <b-row class="mt-5">
-        <b-col>
+        <b-col md="4">
           <div class="form-section">
-            <label>Main Branded Text</label>
+            <label>Main Branded text</label>
             <textarea v-model="sectionData.mainText"></textarea>
           </div>
         </b-col>
-        <b-col>
+        <b-col md="4">
           <div class="form-section">
-            <label>Main Sub Text</label>
-            <textarea v-model="sectionData.subText"></textarea>
+            <label>Survey Text</label>
+            <textarea v-model="sectionData.surveyText"></textarea>
           </div>
         </b-col>
-        <b-col>
+        <b-col md="4">
           <div class="form-section">
-            <label>Paragraph I</label>
-            <textarea v-model="sectionData.paragraph[0].text"></textarea>
+            <label>Address</label>
+            <textarea v-model="sectionData.address"></textarea>
           </div>
         </b-col>
       </b-row>
       <b-row class="mt-5">
         <b-col md="4">
           <div class="form-section">
-            <label>Paragraph II</label>
-            <textarea v-model="sectionData.paragraph[1].text"></textarea>
+            <label>Copyright Text</label>
+            <textarea v-model="sectionData.copyrightText"></textarea>
           </div>
         </b-col>
       </b-row>
-      <button @click.prevent="updateSection" class="mt-5">
+      <button @click.prevent="updateSection(false)" class="mt-5 ml-1">
         <fai icon="upload" />
-        Update First Section's Content
+        Update Footer Section's Content
       </button>
       <button @click.prevent="updateSection(true)" class="mt-5 ml-1">
         <fai icon="magic" />
-        Preview Changes to First Section
+        Preview Changes to Footer Section
       </button>
     </form>
     <EmailAlert v-if="showAlert" :type="type" :content="content" />
@@ -44,11 +44,10 @@
 </template>
 
 <script>
-import mixin from "../mixins/network_update_content";
+import mixin from "@/views/cms/mixins/network_update_content";
 import EmailAlert from "@/views/home/components/EmailAlert";
-
 export default {
-  name: "FirstSection",
+  name: "FooterSection",
   components: { EmailAlert },
   mixins: [mixin],
   data: () => ({
@@ -57,24 +56,25 @@ export default {
     content: "",
     sectionData: {
       mainText: "",
-      subText: "",
-      paragraph: Array(2).fill({ text: "" })
+      surveyText: "",
+      address: "",
+      copyrightText: ""
     }
   }),
+  mounted() {
+    Object.keys(this.sectionData).forEach(key => {
+      this.sectionData[key] = this.websiteData.footer[key];
+    });
+  },
   methods: {
     updateSection: async function(update = false) {
       let currentData = await this.getWebsiteData(this.websiteData, update);
-      currentData.firstSection = this.sectionData;
+      currentData.footer = this.sectionData;
       if (update)
         this.previewContent(currentData, "Your changes will be previewed");
       else
-        this.updateContent(currentData, "First Section Updated Successfully");
+        this.updateContent(currentData, "Footer Section Updated Successfully");
     }
-  },
-  mounted() {
-    Object.keys(this.sectionData).forEach(key => {
-      this.sectionData[key] = this.websiteData.firstSection[key];
-    });
   },
   props: {
     websiteData: Object

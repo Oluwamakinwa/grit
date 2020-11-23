@@ -4,12 +4,15 @@
       <b-row class="mb-5">
         <b-col>
           <p class="leading-to gordita-light mt-5 mb-5">
-            Programs we can help you qualify for/attend
+            {{ websiteData.programsSection.leadingToMainText }}
           </p>
         </b-col>
       </b-row>
       <b-row
-        v-for="(programRow, index) in splitArray(3, programs)"
+        v-for="(programRow, index) in splitArray(
+          3,
+          websiteData.programsSection.programImages
+        )"
         :key="`section-program-${index}`"
       >
         <b-col
@@ -21,17 +24,21 @@
         </b-col>
       </b-row>
       <b-row class="mt-4">
-        <b-col md="6">
+        <b-col
+          md="6"
+          v-for="(programList, index) in splitArray(
+            Math.floor(websiteData.programsSection.programList.length / 2),
+            websiteData.programsSection.programList
+          )"
+          :key="`program-list-${index}`"
+        >
           <ul class="gordita-bold">
-            <li>Coding Schools/Software Engineering bootcamps</li>
-            <li>Nursing certificate programs</li>
-            <li>Flight schools</li>
-          </ul>
-        </b-col>
-        <b-col md="6">
-          <ul class="gordita-bold">
-            <li>Technical Sales Programs</li>
-            <li>Over the road certificate driving programs</li>
+            <li
+              v-for="(program, jindex) in programList"
+              :key="`program-${index}-${jindex}`"
+            >
+              {{ program.text }}
+            </li>
           </ul>
         </b-col>
       </b-row>
@@ -48,7 +55,10 @@ export default {
   name: "ProgramsSection",
   data: () => ({ programs }),
   mixins: [array_helpers],
-  components: { ProgramComponent }
+  components: { ProgramComponent },
+  props: {
+    websiteData: Object
+  }
 };
 </script>
 

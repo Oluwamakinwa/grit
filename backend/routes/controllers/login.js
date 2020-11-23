@@ -17,6 +17,11 @@ module.exports = (req, res) => {
           res.json({ message: "The password you supplied is incorrect" });
         }
       });
+    } else {
+      res.status(400);
+      res.json({
+        message: "No initialized password, please contact the administrator."
+      });
     }
   });
 };

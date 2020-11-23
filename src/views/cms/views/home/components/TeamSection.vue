@@ -14,11 +14,20 @@
         >
           <div class="form-section">
             <label>Team Member {{ 3 * index + (i + 1) }} Picture</label>
-            <TeamImageInput
+            <ImageUpload
               @invalid-image-type="showErrorAlert"
               @image-changed="imageChanged"
               :index="3 * index + i"
-              :team-member="sectionData.team[3 * index + i]"
+              :alt="
+                sectionData.team[3 * index + i].name
+                  ? sectionData.team[3 * index + i].name
+                  : ''
+              "
+              :preview="
+                sectionData.team[3 * index + i].image
+                  ? sectionData.team[3 * index + i].image
+                  : ''
+              "
             />
             <label>Team Member {{ 3 * index + (i + 1) }} Name</label>
             <input v-model="sectionData.team[3 * index + i].name" />
@@ -65,21 +74,21 @@
 </template>
 
 <script>
-import mixin from "../mixins/network_update_content";
+import mixin from "@/views/cms/mixins/network_update_content";
 import EmailAlert from "@/views/home/components/EmailAlert";
-import TeamImageInput from "@/components/TeamImageInput";
+import ImageUpload from "@/views/cms/components/ImageUpload";
 import axios from "axios";
 
 export default {
   name: "TeamSection",
   mixins: [mixin],
-  components: { TeamImageInput, EmailAlert },
+  components: { ImageUpload, EmailAlert },
   data: () => ({
     showAlert: false,
     type: "success",
     content: "",
     sectionData: {
-      team: []
+      team: [{ name: "", roles: [{ text: "" }], image: "" }]
     }
   }),
   mounted() {
@@ -146,7 +155,7 @@ export default {
           return teamMember;
         })
       );
-      currentData.fourthSection.team = team;
+      currentData.homePage.fourthSection.team = team;
       if (update)
         this.previewContent(currentData, "Your changes will be previewed");
       else

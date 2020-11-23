@@ -30,13 +30,17 @@ import TheFooter from "@/components/TheFooter";
 // import InterviewEmbed from "@/views/learn/components/InterviewEmbed";
 
 export default {
-  name: "Learn",
-  data: () => ({ websiteData: {}, initialized: false }),
+  name: "PreviewLearn",
+  data: () => ({ websiteData: {}, initialized: false, loaded: false }),
   mounted() {
-    axios.get("/site_data").then(res => {
+    axios.get("/preview_data").then(res => {
       this.websiteData = res.data;
       this.initialized = true;
     });
+    // window.addEventListener("DOMContentLoaded", function() {
+    //   this.loaded = true;
+    //   // document.getElementById("loader-div").style.display = "none";
+    // });
   },
   components: {
     // InterviewEmbed,

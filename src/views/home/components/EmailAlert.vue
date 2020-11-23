@@ -30,7 +30,7 @@ export default {
   position: fixed
   top: 0
   left: 0
-  z-index: 10000
+  z-index: 900000
 .grit-alert
   background: #1e1f16
   border-radius: 6px

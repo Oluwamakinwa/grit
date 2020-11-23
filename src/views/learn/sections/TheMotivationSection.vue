@@ -3,12 +3,14 @@
     <b-container>
       <b-row>
         <b-col>
-          <p class="leading-to gordita-light">This is</p>
-          <BrandedText small dark>our motivation</BrandedText>
+          <p class="leading-to gordita-light">
+            {{ websiteData.motivationSection.leadingToMainText }}
+          </p>
+          <BrandedText small dark>{{
+            websiteData.motivationSection.mainText
+          }}</BrandedText>
           <p class="survey-leading-to gordita-regular mt-5">
-            Grit was formed to foster economic mobility for Black, Indigenous
-            POC communities who are disproportionately impacted by systemic bias
-            in lending as well as the economic realities laid bare by Covid-19.
+            {{ websiteData.motivationSection.paragraph }}
           </p>
           <img :src="financialInclusion" alt="Driving Financial Inclusion" />
         </b-col>
@@ -24,7 +26,10 @@ import financialInclusion from "@/assets/img/financial_inclusion.png";
 export default {
   name: "TheMotivationSection",
   data: () => ({ financialInclusion }),
-  components: { BrandedText }
+  components: { BrandedText },
+  props: {
+    websiteData: Object
+  }
 };
 </script>
 

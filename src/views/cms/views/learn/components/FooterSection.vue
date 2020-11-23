@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import mixin from "../mixins/network_update_content";
+import mixin from "@/views/cms/mixins/network_update_content";
 import EmailAlert from "@/views/home/components/EmailAlert";
 export default {
   name: "FooterSection",

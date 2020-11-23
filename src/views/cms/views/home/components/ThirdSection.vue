@@ -66,7 +66,7 @@
 
 <script>
 import EmailAlert from "@/views/home/components/EmailAlert";
-import mixin from "../mixins/network_update_content";
+import mixin from "@/views/cms/mixins/network_update_content";
 export default {
   name: "ThirdSection",
   mixins: [mixin],
@@ -96,7 +96,7 @@ export default {
         return blackCard;
       });
       blackCards = blackCards.filter(blackCard => blackCard.title !== "");
-      currentData.thirdSection.blackCards = blackCards;
+      currentData.homePage.thirdSection.blackCards = blackCards;
       if (update)
         this.previewContent(currentData, "Your changes will be previewed");
       else
