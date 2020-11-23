@@ -9,7 +9,10 @@
         </b-col>
       </b-row>
       <b-row
-        v-for="(programRow, index) in splitArray(3, programs)"
+        v-for="(programRow, index) in splitArray(
+          3,
+          websiteData.programsSection.programImages
+        )"
         :key="`section-program-${index}`"
       >
         <b-col

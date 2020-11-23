@@ -1,6 +1,6 @@
 <template>
   <div class="team-image-input">
-    <img class="team-member" :alt="teamMember.name" :src="previewImage" />
+    <img class="team-member" :alt="alt" :src="previewImage" />
     <input type="file" @change="updateImage" />
     <div class="drop-file">
       <p>Click or Drag To Upload a Picture</p>
@@ -17,13 +17,17 @@ export default {
     avatarUrl:
       "https://res.cloudinary.com/hotel-finder/image/upload/v1604964056/avatar_temara.png"
   }),
+  watch: {
+    preview: function(newVal) {
+      this.previewImage = newVal ? newVal : this.avatarUrl;
+    }
+  },
   mounted: function() {
-    this.previewImage = this.teamMember.image
-      ? this.teamMember.image
-      : this.avatarUrl;
+    this.previewImage = this.preview ? this.preview : this.avatarUrl;
   },
   props: {
-    teamMember: Object,
+    alt: String,
+    preview: String,
     index: Number
   },
   methods: {

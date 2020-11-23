@@ -63,7 +63,9 @@ const previewSchema = new Schema({
     },
     programsSection: {
       leadingToMainText: String,
-      programImages: [],
+      programImages: [
+        { backgroundImage: String, programName: String, programType: String }
+      ],
       programList: [{ text: String }]
     },
     gptSection: {
